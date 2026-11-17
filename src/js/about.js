@@ -1,17 +1,17 @@
 import { content } from '../data/content.js';
 import { Icons } from './icons.js';
 
-function renderEducation(list) {
-  return list
+function renderEducation(list, quickFacts) {
+  const eduCards = list
     .map((edu) => {
       if (edu.type === 'university') {
         return `
           <div class="p-3 rounded-xl border border-pink-100 bg-[var(--color-pink-pale)]">
             <p class="font-semibold text-sm text-[var(--color-year-green)] leading-snug">${edu.institution}</p>
-            <p class="text-xs text-[var(--color-body-green)] mt-0.5">${edu.degree}</p>
+            <p class="text-xs text-[var(--color-body-green)] mt-0.5">${edu.faculty ? `${edu.faculty} — ` : ''}${edu.degree}</p>
             <div class="flex items-center justify-between mt-1">
               <span class="text-xs text-[var(--color-body-green)] opacity-80">${edu.period}</span>
-              <span class="pill-yellow !text-[0.65rem] !px-2 !py-0.5">${edu.gpa}</span>
+              ${edu.gpa ? `<span class="pill-yellow !text-[0.65rem] !px-2 !py-0.5">${edu.gpa}</span>` : ''}
             </div>
           </div>`;
       }
@@ -23,10 +23,24 @@ function renderEducation(list) {
         </div>`;
     })
     .join('');
+
+  let quickFactsCard = '';
+  if (quickFacts) {
+    quickFactsCard = `
+      <div class="p-3.5 rounded-xl border border-pink-200 bg-white/80 shadow-xs space-y-2 text-xs text-[var(--color-body-green)]">
+        <p class="font-pixel text-[var(--color-magenta)] font-bold text-xs">✨ Quick Facts</p>
+        <p><strong class="text-[var(--color-year-green)]">Based in:</strong> ${quickFacts.basedIn}</p>
+        <p><strong class="text-[var(--color-year-green)]">Interested in:</strong> ${quickFacts.interestedIn}</p>
+        <p><strong class="text-[var(--color-year-green)]">Exploring:</strong> ${quickFacts.exploring}</p>
+      </div>`;
+  }
+
+  return eduCards + quickFactsCard;
 }
 
 function renderSocialLinks(links) {
   return links
+    .filter((l) => l.url)
     .map(
       (link) => `
       <li>
@@ -51,11 +65,11 @@ export function init() {
   const avatarEl = document.getElementById('about-avatar');
   if (avatarEl) {
     avatarEl.src = profile.avatar;
-    avatarEl.alt = `Foto ${profile.name}`;
+    avatarEl.alt = `Foto ${profile.fullName}`;
   }
 
   const stickerEl = document.getElementById('about-name-sticker');
-  if (stickerEl) stickerEl.textContent = `I'm ${profile.nickname ?? profile.name.split(' ')[0]}`;
+  if (stickerEl) stickerEl.textContent = `I'm ${profile.nickname ?? 'Caca'}`;
 
   const bioEl = document.getElementById('about-bio');
   if (bioEl) {
@@ -65,7 +79,7 @@ export function init() {
   }
 
   const eduEl = document.getElementById('about-education');
-  if (eduEl) eduEl.innerHTML = renderEducation(education);
+  if (eduEl) eduEl.innerHTML = renderEducation(education, profile.quickFacts);
 
   const linksEl = document.getElementById('contact-links');
   if (linksEl) linksEl.innerHTML = renderSocialLinks(socialLinks);
