@@ -172,19 +172,23 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
-    line-height: 1.35;
-    padding: 0.35em 0.06em 0.15em 0.06em;
+    line-height: 1.25;
+    padding-top: 0.25em;
+    padding-bottom: 0.08em;
+    padding-left: 0.02em;
+    padding-right: 0.02em;
     overflow: visible;
+    flex-shrink: 0;
   }
 
   .hero-letter-script {
     font-family: var(--font-script);
-    font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+    font-size: clamp(2rem, 6.5vw, 4.5rem);
   }
 
   .hero-letter-pixel {
     font-family: var(--font-pixel);
-    font-size: clamp(1.6rem, 4.5vw, 3.5rem);
+    font-size: clamp(1.2rem, 3.8vw, 2.7rem);
   }
 
   /* Scalloped card — top + bottom CSS mask, pure CSS */
