@@ -34,7 +34,7 @@
   --color-body-green:          #3D6B1F;
   --color-year-green:          #2F5E12;
 
-  /* ── Phase 3 reserved ── */
+  /* ── Phase 3 tokens ── */
   --color-folder-yellow:       #FFD54A;
   --color-toc-pink:            #F9B6D2;
   --color-toc-text-purple:     #7B6FD0;
@@ -144,11 +144,32 @@
     font-size: clamp(1.6rem, 4.5vw, 3.5rem);
   }
 
-  /* Scalloped card — top + bottom CSS mask, all pure CSS */
+  /* Scalloped card — top + bottom CSS mask, pure CSS */
   .card-scallop {
     --sc: 11px;
     background: #fff;
     filter: drop-shadow(0 4px 28px rgba(214, 51, 132, 0.12));
+    -webkit-mask:
+      radial-gradient(circle at 50% 0%,   transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left top    / calc(var(--sc) * 2) var(--sc) repeat-x,
+      radial-gradient(circle at 50% 100%, transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left bottom / calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000 0 0)
+        0 var(--sc) / 100% calc(100% - var(--sc) * 2) no-repeat;
+    mask:
+      radial-gradient(circle at 50% 0%,   transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left top    / calc(var(--sc) * 2) var(--sc) repeat-x,
+      radial-gradient(circle at 50% 100%, transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left bottom / calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000 0 0)
+        0 var(--sc) / 100% calc(100% - var(--sc) * 2) no-repeat;
+  }
+
+  /* Pink Scalloped card for Table of Contents */
+  .card-scallop-pink {
+    --sc: 11px;
+    background: var(--color-toc-pink);
+    filter: drop-shadow(0 4px 28px rgba(214, 51, 132, 0.15));
     -webkit-mask:
       radial-gradient(circle at 50% 0%,   transparent var(--sc), #000 calc(var(--sc) + 0.5px))
         left top    / calc(var(--sc) * 2) var(--sc) repeat-x,
@@ -208,6 +229,35 @@
     color: #fff;
   }
 
+  .contact-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: #ffffff;
+    color: var(--color-magenta);
+    border-radius: 9999px;
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(214, 51, 132, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+
+  .contact-link-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 22px rgba(214, 51, 132, 0.28);
+    color: var(--color-pink-hot);
+  }
+
+  /* Nav active indicator */
+  .nav-active {
+    color: var(--color-pink-hot) !important;
+    font-weight: 700 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
   /* Experience timeline */
   .timeline-track {
     position: absolute;
@@ -217,5 +267,25 @@
     width: 2px;
     background: linear-gradient(to bottom, var(--color-pink-hot), var(--color-star-yellow));
     border-radius: 2px;
+  }
+
+  /* Dialog backdrop & wrapper */
+  dialog#folder-dialog {
+    border: none;
+    background: transparent;
+    max-width: 58rem;
+    width: 95vw;
+    padding: 1rem;
+    margin: auto;
+  }
+
+  dialog#folder-dialog::backdrop {
+    background: rgba(30, 15, 25, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Lightbox visibility */
+  #lightbox[aria-hidden="true"] {
+    display: none !important;
   }
 }
