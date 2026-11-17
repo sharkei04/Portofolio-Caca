@@ -118,8 +118,8 @@ export function initScrollReveal() {
     if (trackAnim.scrollTrigger) triggers.push(trackAnim.scrollTrigger);
   }
 
-  // 5. Batch reveal for gallery grids (docs & certs previews)
-  ScrollTrigger.batch('.doc-preview-item, .cert-preview-item', {
+  // 5. Batch reveal for certificate preview items
+  ScrollTrigger.batch('.cert-preview-item', {
     start: 'top 90%',
     once: true,
     onEnter: (batch) => {
