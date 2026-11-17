@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Colors ── */
+  --color-baby-pink: #f9c6d0;
+  --color-baby-blue: #c6e2f9;
+  --color-butter: #fdf3b0;
+  --color-lime-yellow: #e8f531;
+  --color-hot-pink: #ff2d78;
+  --color-magenta: #e91e8c;
+  --color-warm-orange: #ff6b35;
+  --color-royal-blue: #2a4dd0;
+  --color-mauve-pink: #c97eb2;
+  --color-white: #ffffff;
+
+  /* ── Fonts ── */
+  --font-script: "Pinyon Script", cursive;
+  --font-pixel: "Pixelify Sans", monospace;
+  --font-body: "Nunito", sans-serif;
+}
+
+/* ── Base ── */
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: #1a1a1a;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-hot-pink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ── Reusable utilities ── */
+@layer utilities {
+  .page-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-baby-pink) 0%,
+      var(--color-baby-blue) 50%,
+      var(--color-butter) 100%
+    );
+    min-height: 100vh;
+  }
+
+  .card-white {
+    background-color: var(--color-white);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px 0 rgba(201, 126, 178, 0.12),
+      0 1.5px 6px 0 rgba(42, 77, 208, 0.06);
+  }
+
+  .badge-pink {
+    background: linear-gradient(
+      90deg,
+      var(--color-hot-pink),
+      var(--color-mauve-pink)
+    );
+    color: var(--color-white);
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    display: inline-block;
+  }
+
+  .title-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--color-warm-orange),
+      var(--color-hot-pink) 50%,
+      var(--color-royal-blue)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
