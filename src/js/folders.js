@@ -1,5 +1,6 @@
 import { content } from '../data/content.js';
 import { openLightbox } from './lightbox.js';
+import { animateDialogOpen, animateDialogClose } from './animations/folders.js';
 
 function folderSVG() {
   return `<svg viewBox="0 0 80 64" width="72" height="58" class="drop-shadow-sm transition-transform duration-200 group-hover:scale-105" aria-hidden="true">
@@ -45,7 +46,7 @@ export function openFolderDialog(categoryId, openerEl = null) {
       </div>`;
 
     bodyEl.querySelectorAll('.doc-card').forEach((card) => {
-      card.addEventListener('click', (e) => {
+      card.addEventListener('click', () => {
         const idx = Number(card.getAttribute('data-index'));
         openLightbox(items, idx, card);
       });
@@ -76,7 +77,6 @@ export function openFolderDialog(categoryId, openerEl = null) {
       });
     });
   } else {
-    // Project cards (sifest, pkkmb, rental)
     bodyEl.innerHTML = `
       <div class="grid grid-cols-1 ${items.length > 1 ? 'md:grid-cols-2' : 'max-w-lg mx-auto'} gap-6">
         ${items
@@ -113,6 +113,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
   } else {
     dialog.setAttribute('open', '');
   }
+
+  animateDialogOpen(dialog, openerEl);
   document.getElementById('folder-dialog-close')?.focus();
 }
 
@@ -125,7 +127,7 @@ function renderFolders() {
       (cat) => `
       <button
         type="button"
-        class="folder-btn group flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] transition-all"
+        class="folder-btn group flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] transition-all cursor-pointer"
         data-folder="${cat.id}"
         aria-haspopup="dialog"
       >
@@ -146,14 +148,13 @@ function renderFolders() {
 }
 
 function renderPreviews() {
-  // Documentation preview section
   const docPreview = document.getElementById('docs-preview-grid');
   if (docPreview) {
     const docs = content.projects.docs.slice(0, 6);
     docPreview.innerHTML = docs
       .map(
         (item, idx) => `
-        <button type="button" class="doc-preview-item group text-left rounded-xl overflow-hidden border-2 border-pink-100 bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)]" data-index="${idx}">
+        <button type="button" class="doc-preview-item group text-left rounded-xl overflow-hidden border-2 border-pink-100 bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] cursor-pointer" data-index="${idx}">
           <img src="${item.image}" alt="${item.alt}" class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="240" height="144" />
           <div class="p-2.5">
             <p class="font-pixel text-xs text-[var(--color-magenta)] font-bold truncate">${item.caption}</p>
@@ -170,14 +171,13 @@ function renderPreviews() {
     });
   }
 
-  // Certificates preview section
   const certPreview = document.getElementById('certs-preview-grid');
   if (certPreview) {
     const certs = content.projects.certs.slice(0, 6);
     certPreview.innerHTML = certs
       .map(
         (item, idx) => `
-        <button type="button" class="cert-preview-item group text-left rounded-xl overflow-hidden border-2 border-yellow-200 bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)]" data-index="${idx}">
+        <button type="button" class="cert-preview-item group text-left rounded-xl overflow-hidden border-2 border-yellow-200 bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] cursor-pointer" data-index="${idx}">
           <img src="${item.image}" alt="${item.alt}" class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="240" height="144" />
           <div class="p-2.5">
             <p class="font-pixel text-xs text-[var(--color-year-green)] font-bold truncate">${item.title}</p>
@@ -195,7 +195,6 @@ function renderPreviews() {
     });
   }
 
-  // View All buttons
   document.getElementById('view-all-docs')?.addEventListener('click', (e) => {
     openFolderDialog('docs', e.currentTarget);
   });
@@ -211,28 +210,28 @@ export function init() {
   const dialog = document.getElementById('folder-dialog');
   const closeBtn = document.getElementById('folder-dialog-close');
   if (dialog && closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      if (typeof dialog.close === 'function') {
-        dialog.close();
-      } else {
-        dialog.removeAttribute('open');
-      }
-      lastActiveOpener?.focus();
-    });
-
-    dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) {
+    const handleClose = () => {
+      animateDialogClose(dialog, () => {
         if (typeof dialog.close === 'function') {
           dialog.close();
         } else {
           dialog.removeAttribute('open');
         }
         lastActiveOpener?.focus();
+      });
+    };
+
+    closeBtn.addEventListener('click', handleClose);
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) {
+        handleClose();
       }
     });
 
-    dialog.addEventListener('close', () => {
-      lastActiveOpener?.focus();
+    dialog.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      handleClose();
     });
   }
 }

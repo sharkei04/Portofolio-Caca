@@ -1,3 +1,5 @@
+import { animateLightboxOpen, animateLightboxChange } from './animations/lightbox.js';
+
 let _items      = [];
 let _index      = 0;
 let _openerEl   = null;
@@ -9,31 +11,54 @@ function getPrev()    { return document.getElementById('lightbox-prev'); }
 function getNext()    { return document.getElementById('lightbox-next'); }
 function getLB()      { return document.getElementById('lightbox'); }
 
-function render() {
+function render(animate = false) {
   const item = _items[_index];
   if (!item) return;
 
-  const img = getImg();
-  img.src = item.image ?? item.src ?? '';
-  img.alt = item.alt ?? item.caption ?? item.title ?? '';
+  const updateDom = () => {
+    const img = getImg();
+    if (img) {
+      img.src = item.image ?? item.src ?? '';
+      img.alt = item.alt ?? item.caption ?? item.title ?? '';
+    }
 
-  getCaption().textContent = item.caption ?? item.title ?? '';
-  getCounter().textContent = `${_index + 1} / ${_items.length}`;
-  getPrev().disabled = _index === 0;
-  getNext().disabled = _index === _items.length - 1;
+    const caption = getCaption();
+    if (caption) caption.textContent = item.caption ?? item.title ?? '';
+
+    const counter = getCounter();
+    if (counter) counter.textContent = `${_index + 1} / ${_items.length}`;
+
+    const prevBtn = getPrev();
+    if (prevBtn) prevBtn.disabled = _index === 0;
+
+    const nextBtn = getNext();
+    if (nextBtn) nextBtn.disabled = _index === _items.length - 1;
+  };
+
+  if (animate) {
+    animateLightboxChange(getImg(), updateDom);
+  } else {
+    updateDom();
+  }
 }
 
 function prev() {
-  if (_index > 0) { _index--; render(); }
+  if (_index > 0) {
+    _index--;
+    render(true);
+  }
 }
 
 function next() {
-  if (_index < _items.length - 1) { _index++; render(); }
+  if (_index < _items.length - 1) {
+    _index++;
+    render(true);
+  }
 }
 
 function close() {
   const lb = getLB();
-  lb.setAttribute('aria-hidden', 'true');
+  if (lb) lb.setAttribute('aria-hidden', 'true');
   document.removeEventListener('keydown', handleKey);
   _openerEl?.focus();
 }
@@ -49,12 +74,14 @@ export function openLightbox(items, startIndex, openerEl) {
   _index    = startIndex;
   _openerEl = openerEl ?? null;
 
-  render();
+  render(false);
 
   const lb = getLB();
-  lb.removeAttribute('aria-hidden');
+  if (lb) lb.removeAttribute('aria-hidden');
   document.addEventListener('keydown', handleKey);
   document.getElementById('lightbox-close')?.focus();
+
+  animateLightboxOpen(getImg());
 }
 
 export function init() {

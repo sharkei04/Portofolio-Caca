@@ -1,5 +1,6 @@
 import { content } from '../data/content.js';
 import { Icons } from './icons.js';
+import { animateFilterTransition } from './animations/experienceFilter.js';
 
 let activeFilter = 'all';
 let isExpanded = false;
@@ -55,7 +56,7 @@ function getFilteredList() {
   });
 }
 
-function updateTimeline() {
+function renderTimelineDOM() {
   const timelineEl = document.getElementById('experience-timeline');
   const toggleBtn = document.getElementById('experience-toggle-btn');
   const liveStatus = document.getElementById('experience-live-status');
@@ -87,6 +88,15 @@ function updateTimeline() {
   }
 }
 
+function updateTimeline(animate = false) {
+  const timelineEl = document.getElementById('experience-timeline');
+  if (animate && timelineEl) {
+    animateFilterTransition(timelineEl, renderTimelineDOM);
+  } else {
+    renderTimelineDOM();
+  }
+}
+
 function initFilters() {
   const filterBtns = document.querySelectorAll('[data-filter]');
   if (!filterBtns.length) return;
@@ -101,11 +111,12 @@ function initFilters() {
 
       filterBtns.forEach((b) => {
         const isActive = b === btn;
+        b.setAttribute('aria-pressed', String(isActive));
         b.setAttribute('aria-selected', String(isActive));
         b.className = isActive ? 'pill-filter-active' : 'pill-filter-inactive';
       });
 
-      updateTimeline();
+      updateTimeline(true);
     });
 
     btn.addEventListener('keydown', (e) => {
@@ -131,7 +142,7 @@ function initToggle() {
 
   toggleBtn.addEventListener('click', () => {
     isExpanded = !isExpanded;
-    updateTimeline();
+    updateTimeline(false);
   });
 }
 
@@ -145,5 +156,5 @@ export function init() {
 
   initFilters();
   initToggle();
-  updateTimeline();
+  updateTimeline(false);
 }
