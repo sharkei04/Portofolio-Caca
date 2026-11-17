@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" fill="none">
+  <rect width="600" height="450" rx="16" fill="#FDE6F0"/>
+  <rect x="30" y="30" width="540" height="390" rx="12" fill="white" stroke="#F58BBE" stroke-width="2"/>
+  <circle cx="300" cy="180" r="50" fill="#CFE8F8"/>
+  <polygon points="300,140 312,172 344,174 318,193 327,224 300,205 273,224 282,193 256,174 288,172" fill="#FFD95A"/>
+  <text x="300" y="280" text-anchor="middle" font-family="'Pixelify Sans', monospace" font-size="22" font-weight="bold" fill="#D63384">Event Documentation</text>
+  <text x="300" y="315" text-anchor="middle" font-family="'Nunito', sans-serif" font-size="15" fill="#3D6B1F">AFL &amp; Organization Highlights</text>
+</svg>

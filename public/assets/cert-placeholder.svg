@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" fill="none">
+  <rect width="600" height="450" rx="16" fill="#FFF6C4"/>
+  <rect x="25" y="25" width="550" height="400" rx="8" fill="white" stroke="#2F5E12" stroke-width="4"/>
+  <rect x="35" y="35" width="530" height="380" rx="4" fill="none" stroke="#FFD95A" stroke-width="2"/>
+  <polygon points="300,75 312,107 344,109 318,128 327,159 300,140 273,159 282,128 256,109 288,107" fill="#FFD95A"/>
+  <text x="300" y="210" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="44" fill="#B0307A">Certificate of Achievement</text>
+  <line x1="150" y1="235" x2="450" y2="235" stroke="#F0508F" stroke-width="2"/>
+  <text x="300" y="275" text-anchor="middle" font-family="'Pixelify Sans', monospace" font-size="20" font-weight="bold" fill="#2F5E12">Keisya Rizkyka</text>
+  <text x="300" y="315" text-anchor="middle" font-family="'Nunito', sans-serif" font-size="14" fill="#3D6B1F">Recognized for Outstanding Participation &amp; Contribution</text>
+  <rect x="240" y="345" width="120" height="28" rx="14" fill="#FFE68A"/>
+  <text x="300" y="364" text-anchor="middle" font-family="'Pixelify Sans', monospace" font-size="12" font-weight="bold" fill="#C2307A">Verified 2025-2026</text>
+</svg>
