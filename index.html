@@ -385,10 +385,50 @@
             <!-- Experience Intro line -->
             <p
               id="experience-intro"
-              class="text-sm md:text-base text-[var(--color-body-green)] mb-8 italic leading-relaxed"
+              class="text-sm md:text-base text-[var(--color-body-green)] mb-6 italic leading-relaxed"
             >
               <!-- Populated by experience.js -->
             </p>
+
+            <!-- Experience filter row -->
+            <div class="mb-8 flex flex-wrap items-center gap-2.5" role="tablist" aria-label="Filter experience by category">
+              <button
+                type="button"
+                role="tab"
+                id="filter-all"
+                aria-selected="true"
+                aria-controls="experience-timeline"
+                data-filter="all"
+                class="pill-filter-active"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="filter-org"
+                aria-selected="false"
+                aria-controls="experience-timeline"
+                data-filter="organization"
+                class="pill-filter-inactive"
+              >
+                Organizational Experience
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="filter-event"
+                aria-selected="false"
+                aria-controls="experience-timeline"
+                data-filter="event"
+                class="pill-filter-inactive"
+              >
+                Event &amp; Leadership
+              </button>
+            </div>
+
+            <!-- Screen reader live region -->
+            <p id="experience-live-status" class="sr-only" aria-live="polite" role="status"></p>
 
             <!-- Two-column desktop layout (Timeline left, Skills right) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -402,6 +442,18 @@
                   aria-label="Experience history"
                 >
                   <!-- Rendered by experience.js -->
+                </div>
+
+                <!-- Show more / Show less toggle button -->
+                <div class="mt-8 pl-10">
+                  <button
+                    type="button"
+                    id="experience-toggle-btn"
+                    class="pill-yellow !text-xs !px-5 !py-2 cursor-pointer hover:scale-105 transition-transform font-bold hidden"
+                    aria-expanded="false"
+                  >
+                    Show more &darr;
+                  </button>
                 </div>
               </div>
 
