@@ -1,4 +1,4 @@
-# Portfolio Web — Keisya Ramadhani
+# Portfolio Web — Keisya Rizkyka
 
 Personal portfolio website built with Vite + Tailwind CSS v4 + Vanilla JS + GSAP.
 
