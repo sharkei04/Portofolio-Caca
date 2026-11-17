@@ -76,9 +76,9 @@ export function openFolderDialog(categoryId, openerEl = null) {
       });
     });
   } else {
-    // Project cards (web, database, business)
+    // Project cards (sifest, pkkmb, rental)
     bodyEl.innerHTML = `
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 ${items.length > 1 ? 'md:grid-cols-2' : 'max-w-lg mx-auto'} gap-6">
         ${items
           .map(
             (proj) => `

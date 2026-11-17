@@ -159,58 +159,42 @@ export const content = {
   ],
 
   projectCategories: [
-    { id: 'web',      label: 'Web & Software' },
-    { id: 'database', label: 'Database & System Analysis' },
-    { id: 'business', label: 'Business & Strategy' },
+    { id: 'sifest',   label: 'Website SI Fest' },
+    { id: 'pkkmb',    label: 'Website Penilaian PKKMB' },
+    { id: 'rental',   label: 'Website Rental Mobil' },
     { id: 'docs',     label: 'Event Documentation' },
     { id: 'certs',    label: 'Certificates' },
   ],
 
   projects: {
-    web: [
+    sifest: [
       {
-        title:       'Personal Portfolio',
-        description: '[PLACEHOLDER] My personal portfolio website — the site you are looking at right now. Built with Vite, Tailwind CSS v4, and GSAP.',
-        tech:        ['Vite', 'Tailwind CSS', 'GSAP', 'Vanilla JS'],
+        title:       'Website SI Fest',
+        description: 'Official website for SI FEST (Sistem Informasi Festival) HIMSI FASILKOM UNSRI, featuring event schedules, competition registrations, and activity highlights.',
+        tech:        ['Web Development', 'HTML5', 'Tailwind CSS', 'JavaScript'],
         demo:        '',
         repo:        '',
-        image:       '/assets/project-portfolio.svg',
-      },
-      {
-        title:       'SIPUSTAKA',
-        description: '[PLACEHOLDER] A Java-based library management system developed as a group project, featuring book management, member registration, and borrowing records.',
-        tech:        ['Java', 'NetBeans', 'MySQL'],
-        demo:        '',
-        repo:        '',
-        image:       '/assets/project-sipustaka.svg',
+        image:       '/assets/Website SI Fest.png',
       },
     ],
-    database: [
+    pkkmb: [
       {
-        title:       'Vehicle Rental Database',
-        description: '[PLACEHOLDER] Entity-Relationship Diagram and relational model for a vehicle rental business, including normalization and query design.',
-        tech:        ['MySQL', 'ERD', 'Relational Model'],
+        title:       'Website Penilaian PKKMB',
+        description: 'Evaluation and scoring system platform for PKKMB Sistem Informasi to streamline participant assessments, committee rubric evaluations, and data recaps.',
+        tech:        ['Web App', 'Database', 'Evaluation System', 'PHP/MySQL'],
         demo:        '',
         repo:        '',
-        image:       '/assets/project-db.svg',
-      },
-      {
-        title:       'SIMPUSDA SUMSEL — Requirements Specification',
-        description: '[PLACEHOLDER] A software requirements specification document for the South Sumatra regional archive management system.',
-        tech:        ['Requirements Engineering', 'SRS Document'],
-        demo:        '',
-        repo:        '',
-        image:       '/assets/project-simpusda.svg',
+        image:       '/assets/project-pkkmb.svg',
       },
     ],
-    business: [
+    rental: [
       {
-        title:       'MODELicious — Business Model Canvas',
-        description: '[PLACEHOLDER] A technology-based entrepreneurship project: a smart wardrobe and outfit recommendation platform, presented using the Business Model Canvas framework.',
-        tech:        ['Business Canvas', 'Entrepreneurship'],
+        title:       'Website Rental Mobil',
+        description: 'Web-based car rental platform featuring a fleet catalog, reservation booking system, price calculators, and rental schedule management.',
+        tech:        ['Full-Stack Web', 'MySQL', 'Booking System'],
         demo:        '',
         repo:        '',
-        image:       '/assets/project-bmc.svg',
+        image:       '/assets/project-rental.svg',
       },
     ],
     docs: [
