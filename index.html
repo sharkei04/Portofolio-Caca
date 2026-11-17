@@ -59,7 +59,7 @@
           aria-controls="mobile-menu"
           aria-expanded="false"
           aria-label="Toggle navigation menu"
-          class="md:hidden flex flex-col gap-1.5 p-2 rounded"
+          class="md:hidden flex flex-col justify-center gap-1.5 p-3 min-w-[44px] min-h-[44px] rounded"
         >
           <span class="block w-6 h-0.5 bg-[var(--color-nav-text)]"></span>
           <span class="block w-6 h-0.5 bg-[var(--color-nav-text)]"></span>
@@ -83,6 +83,14 @@
           </ul>
         </nav>
       </div>
+
+      <!-- Marquee strip under navigation -->
+      <div id="marquee-strip" class="overflow-hidden border-t border-black/10 bg-[var(--color-lime-strip)] py-1 select-none font-pixel text-[0.7rem] text-[var(--color-nav-text)] font-semibold tracking-wider" aria-hidden="true">
+        <div class="marquee-track flex whitespace-nowrap gap-6 w-max">
+          <span>✦ KEISYA RIZKYKA ✦ PORTFOLIO 2026 ✦ INFORMATION SYSTEMS ✦ GROWING THROUGH EXPERIENCES ✦ LEARNING WITH PEOPLE</span>
+          <span>✦ KEISYA RIZKYKA ✦ PORTFOLIO 2026 ✦ INFORMATION SYSTEMS ✦ GROWING THROUGH EXPERIENCES ✦ LEARNING WITH PEOPLE</span>
+        </div>
+      </div>
     </header>
 
     <!-- ══════════════════════════════════════════
@@ -105,6 +113,7 @@
           aria-hidden="true"
         >
           <svg
+            id="hero-bg-star"
             viewBox="0 0 100 100"
             class="w-[min(560px,88vw)] h-auto opacity-75"
             fill="none"
@@ -169,7 +178,7 @@
         <div class="relative z-10 flex flex-col items-center gap-5">
 
           <!-- Move crosshair above the frame -->
-          <div aria-hidden="true">
+          <div id="hero-crosshair" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14 1L10 7H13V13H7V10L1 14L7 18V15H13V21H10L14 27L18 21H15V15H21V18L27 14L21 10V13H15V7H18L14 1Z" fill="#F0508F"/>
             </svg>
@@ -188,7 +197,7 @@
             <span class="selection-handle" style="bottom:-5px;left:50%;transform:translateX(-50%)" aria-hidden="true"></span>
 
             <!-- Cursor arrow overlapping top-right -->
-            <div class="absolute -top-7 right-8" aria-hidden="true">
+            <div id="hero-cursor" class="absolute -top-7 right-8" aria-hidden="true">
               <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 2L2 22L6.5 17L9.5 24.5L12.5 23L9.5 15.5L17 15.5Z" fill="#F0508F" stroke="white" stroke-width="1" stroke-linejoin="round"/>
               </svg>
@@ -260,6 +269,19 @@
             <li class="ring"></li><li class="ring"></li><li class="ring"></li>
             <li class="ring"></li><li class="ring"></li><li class="ring"></li>
           </ul>
+
+          <!-- Decorative floating stars (draggable on desktop) -->
+          <div class="relative pointer-events-none select-none" aria-hidden="true">
+            <svg viewBox="0 0 100 100" class="absolute -top-6 -right-2 md:-right-6 w-10 h-10 md:w-14 md:h-14 float-star z-20 pointer-events-auto" aria-hidden="true" focusable="false">
+              <polygon points="50,4 60,40 96,50 60,60 50,96 40,60 4,50 40,40" fill="#FFD95A"/>
+            </svg>
+            <svg viewBox="0 0 100 100" class="absolute top-44 -left-3 md:-left-6 w-9 h-9 md:w-12 md:h-12 float-star z-20 pointer-events-auto" aria-hidden="true" focusable="false">
+              <circle cx="34" cy="34" r="22" fill="#F58BBE" opacity="0.8"/>
+              <circle cx="66" cy="34" r="22" fill="#F58BBE" opacity="0.8"/>
+              <circle cx="34" cy="66" r="22" fill="#F58BBE" opacity="0.8"/>
+              <circle cx="66" cy="66" r="22" fill="#F58BBE" opacity="0.8"/>
+            </svg>
+          </div>
 
           <!-- Scalloped card -->
           <div class="card-scallop">
@@ -402,6 +424,7 @@
                 role="tab"
                 id="filter-all"
                 aria-selected="true"
+                aria-pressed="true"
                 aria-controls="experience-timeline"
                 data-filter="all"
                 class="pill-filter-active"
@@ -413,6 +436,7 @@
                 role="tab"
                 id="filter-org"
                 aria-selected="false"
+                aria-pressed="false"
                 aria-controls="experience-timeline"
                 data-filter="organization"
                 class="pill-filter-inactive"
@@ -424,6 +448,7 @@
                 role="tab"
                 id="filter-event"
                 aria-selected="false"
+                aria-pressed="false"
                 aria-controls="experience-timeline"
                 data-filter="event"
                 class="pill-filter-inactive"
@@ -703,7 +728,7 @@
           <button
             type="button"
             id="folder-dialog-close"
-            class="w-8 h-8 rounded-full bg-pink-100 text-[var(--color-magenta)] hover:bg-[var(--color-pink-hot)] hover:text-white flex items-center justify-center font-bold text-lg transition-colors cursor-pointer"
+            class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-pink-100 text-[var(--color-magenta)] hover:bg-[var(--color-pink-hot)] hover:text-white flex items-center justify-center font-bold text-xl transition-colors cursor-pointer"
             aria-label="Close dialog"
           >
             &times;
@@ -733,7 +758,7 @@
         <button
           type="button"
           id="lightbox-close"
-          class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-2xl transition-colors cursor-pointer"
+          class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-2xl transition-colors cursor-pointer"
           aria-label="Close image preview"
         >
           &times;
@@ -745,7 +770,7 @@
         <button
           type="button"
           id="lightbox-prev"
-          class="absolute left-2 md:-left-14 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-xl transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
+          class="absolute left-2 md:-left-14 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-xl transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
           aria-label="Previous image"
         >
           &#8249;
@@ -761,7 +786,7 @@
         <button
           type="button"
           id="lightbox-next"
-          class="absolute right-2 md:-right-14 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-xl transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
+          class="absolute right-2 md:-right-14 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-xl transition-colors cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
           aria-label="Next image"
         >
           &#8249;
