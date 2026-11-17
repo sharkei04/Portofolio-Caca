@@ -1,22 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Colors ── */
-  --color-baby-pink: #f9c6d0;
-  --color-baby-blue: #c6e2f9;
-  --color-butter: #fdf3b0;
-  --color-lime-yellow: #e8f531;
-  --color-hot-pink: #ff2d78;
-  --color-magenta: #e91e8c;
-  --color-warm-orange: #ff6b35;
-  --color-royal-blue: #2a4dd0;
-  --color-mauve-pink: #c97eb2;
-  --color-white: #ffffff;
+  /* ── Page gradient ── */
+  --color-pink-soft:           #FBD0E4;
+  --color-pink-pale:           #FDE6F0;
+  --color-blue-soft:           #CFE8F8;
+  --color-butter:              #FFF6C4;
 
-  /* ── Fonts ── */
+  /* ── Nav strip ── */
+  --color-lime-strip:          #F2F9B6;
+  --color-nav-text:            #B0307A;
+
+  /* ── Title / accents ── */
+  --color-orange-title:        #F7A436;
+  --color-pink-hot:            #F0508F;
+  --color-magenta:             #D63384;
+
+  /* ── Pills ── */
+  --color-pill-yellow:         #FFE68A;
+  --color-pill-yellow-text:    #C2307A;
+
+  /* ── Selection / frames ── */
+  --color-selection-blue:      #3B7BDB;
+
+  /* ── Decorative stars ── */
+  --color-star-yellow:         #FFD95A;
+  --color-star-orange:         #F9A94B;
+  --color-star-pink:           #F58BBE;
+  --color-star-blue:           #9CC8F0;
+  --color-hero-star:           #FBFBD0;
+
+  /* ── Cards / body text ── */
+  --color-body-green:          #3D6B1F;
+  --color-year-green:          #2F5E12;
+
+  /* ── Phase 3 reserved ── */
+  --color-folder-yellow:       #FFD54A;
+  --color-toc-pink:            #F9B6D2;
+  --color-toc-text-purple:     #7B6FD0;
+
+  /* ── Typography ── */
   --font-script: "Pinyon Script", cursive;
-  --font-pixel: "Pixelify Sans", monospace;
-  --font-body: "Nunito", sans-serif;
+  --font-pixel:  "Pixelify Sans", monospace;
+  --font-body:   "Nunito", sans-serif;
 }
 
 /* ── Base ── */
@@ -31,7 +57,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-hot-pink);
+    outline: 3px solid var(--color-pink-hot);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -39,46 +65,157 @@
 
 /* ── Reusable utilities ── */
 @layer utilities {
+  /* Page background */
   .page-gradient {
     background: linear-gradient(
       135deg,
-      var(--color-baby-pink) 0%,
-      var(--color-baby-blue) 50%,
-      var(--color-butter) 100%
+      var(--color-pink-soft)   0%,
+      var(--color-pink-pale)  28%,
+      var(--color-blue-soft)  65%,
+      var(--color-butter)    100%
     );
     min-height: 100vh;
   }
 
-  .card-white {
-    background-color: var(--color-white);
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 24px 0 rgba(201, 126, 178, 0.12),
-      0 1.5px 6px 0 rgba(42, 77, 208, 0.06);
-  }
-
-  .badge-pink {
-    background: linear-gradient(
-      90deg,
-      var(--color-hot-pink),
-      var(--color-mauve-pink)
-    );
-    color: var(--color-white);
-    font-family: var(--font-pixel);
-    font-size: 0.75rem;
-    padding: 0.2rem 0.75rem;
+  /* Pills */
+  .pill-pink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 1.1rem;
+    background: linear-gradient(90deg, #F78FC0, #E83E8C);
+    color: #fff;
     border-radius: 9999px;
-    display: inline-block;
+    font-family: var(--font-pixel);
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
   }
 
-  .title-gradient {
+  .pill-yellow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 1.1rem;
+    background-color: var(--color-pill-yellow);
+    color: var(--color-pill-yellow-text);
+    border-radius: 9999px;
+    font-family: var(--font-pixel);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Gradient title text */
+  .text-title-gradient {
     background: linear-gradient(
       90deg,
-      var(--color-warm-orange),
-      var(--color-hot-pink) 50%,
-      var(--color-royal-blue)
+      var(--color-orange-title),
+      var(--color-pink-hot) 50%,
+      var(--color-selection-blue)
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Individual hero letter spans */
+  .hero-letter {
+    background: linear-gradient(
+      135deg,
+      var(--color-orange-title),
+      var(--color-pink-hot) 50%,
+      var(--color-selection-blue)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .hero-letter-script {
+    font-family: var(--font-script);
+    font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+  }
+
+  .hero-letter-pixel {
+    font-family: var(--font-pixel);
+    font-size: clamp(1.6rem, 4.5vw, 3.5rem);
+  }
+
+  /* Scalloped card — top + bottom CSS mask, all pure CSS */
+  .card-scallop {
+    --sc: 11px;
+    background: #fff;
+    filter: drop-shadow(0 4px 28px rgba(214, 51, 132, 0.12));
+    -webkit-mask:
+      radial-gradient(circle at 50% 0%,   transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left top    / calc(var(--sc) * 2) var(--sc) repeat-x,
+      radial-gradient(circle at 50% 100%, transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left bottom / calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000 0 0)
+        0 var(--sc) / 100% calc(100% - var(--sc) * 2) no-repeat;
+    mask:
+      radial-gradient(circle at 50% 0%,   transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left top    / calc(var(--sc) * 2) var(--sc) repeat-x,
+      radial-gradient(circle at 50% 100%, transparent var(--sc), #000 calc(var(--sc) + 0.5px))
+        left bottom / calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000 0 0)
+        0 var(--sc) / 100% calc(100% - var(--sc) * 2) no-repeat;
+  }
+
+  /* Spiral binder ring row */
+  .spiral-binder {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 24px;
+    margin-bottom: -13px;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+  }
+
+  .spiral-binder .ring {
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    border: 3px solid #d4a0c0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(176, 48, 122, 0.18);
+    flex-shrink: 0;
+  }
+
+  /* Design-tool selection frame */
+  .selection-frame {
+    border: 2px solid var(--color-selection-blue);
+    position: relative;
+  }
+
+  .selection-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid var(--color-selection-blue);
+    border-radius: 1px;
+  }
+
+  /* Contact bar */
+  .contact-bar {
+    background: linear-gradient(90deg, #F78FC0, #E83E8C);
+    color: #fff;
+  }
+
+  /* Experience timeline */
+  .timeline-track {
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-pink-hot), var(--color-star-yellow));
+    border-radius: 2px;
   }
 }
