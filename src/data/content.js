@@ -155,7 +155,6 @@ export const content = {
     { name: 'JavaScript',     color: '#F7DF1E', rating: 3 },
     { name: 'Java',           color: '#ED8B00', rating: 3 },
     { name: 'SQL / MySQL',    color: '#4479A1', rating: 3 },
-    { name: 'Git & GitHub',   color: '#F05032', rating: 3 },
   ],
 
   projectCategories: [
