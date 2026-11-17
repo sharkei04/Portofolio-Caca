@@ -8,8 +8,12 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 import { init as initHero }       from './js/hero.js';
 import { init as initAbout }      from './js/about.js';
 import { init as initExperience } from './js/experience.js';
-import { init as initMarquee }    from './js/marquee.js';
+import { init as initSkills }     from './js/skills.js';
 import { init as initFolders }    from './js/folders.js';
+import { init as initLightbox }   from './js/lightbox.js';
+import { init as initContact }    from './js/contact.js';
+import { init as initNavSpy }     from './js/navSpy.js';
+import { init as initMarquee }    from './js/marquee.js';
 
 function initNav() {
   const btn  = document.getElementById('hamburger');
@@ -37,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initHero();
   initAbout();
   initExperience();
-  initMarquee();
+  initSkills();
   initFolders();
+  initLightbox();
+  initContact();
+  initNavSpy();
+  initMarquee();
 });
