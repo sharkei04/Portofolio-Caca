@@ -36,6 +36,14 @@
       class="sticky top-0 z-40 bg-[var(--color-lime-strip)] border-b-2 border-black/10"
       role="banner"
     >
+      <!-- Marquee ticker strip -->
+      <div id="marquee-strip" class="overflow-hidden whitespace-nowrap bg-[var(--color-lime-strip)] border-b border-black/5 py-1 text-[0.7rem] font-pixel font-bold text-[var(--color-nav-text)] select-none">
+        <div class="marquee-track inline-flex gap-8">
+          <span>✦ KEISYA RIZKYKA ✦ PORTFOLIO 2026 ✦ INFORMATION SYSTEMS ✦ AIESEC &amp; HIMSI ✦ WEB &amp; UI/UX ✦ GROWING THROUGH EXPERIENCES ✦</span>
+          <span>✦ KEISYA RIZKYKA ✦ PORTFOLIO 2026 ✦ INFORMATION SYSTEMS ✦ AIESEC &amp; HIMSI ✦ WEB &amp; UI/UX ✦ GROWING THROUGH EXPERIENCES ✦</span>
+        </div>
+      </div>
+
       <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
         <span class="font-script text-2xl leading-none select-none text-[var(--color-nav-text)]">
           Keisya R.
@@ -105,8 +113,9 @@
           aria-hidden="true"
         >
           <svg
+            id="hero-bg-star"
             viewBox="0 0 100 100"
-            class="w-[min(560px,88vw)] h-auto opacity-75"
+            class="w-[min(560px,88vw)] h-auto opacity-75 origin-center"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -169,7 +178,7 @@
         <div class="relative z-10 flex flex-col items-center gap-5">
 
           <!-- Move crosshair above the frame -->
-          <div aria-hidden="true">
+          <div id="hero-crosshair" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14 1L10 7H13V13H7V10L1 14L7 18V15H13V21H10L14 27L18 21H15V15H21V18L27 14L21 10V13H15V7H18L14 1Z" fill="#F0508F"/>
             </svg>
@@ -188,7 +197,7 @@
             <span class="selection-handle" style="bottom:-5px;left:50%;transform:translateX(-50%)" aria-hidden="true"></span>
 
             <!-- Cursor arrow overlapping top-right -->
-            <div class="absolute -top-7 right-8" aria-hidden="true">
+            <div id="hero-cursor" class="absolute -top-7 right-8" aria-hidden="true">
               <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 2L2 22L6.5 17L9.5 24.5L12.5 23L9.5 15.5L17 15.5Z" fill="#F0508F" stroke="white" stroke-width="1" stroke-linejoin="round"/>
               </svg>
