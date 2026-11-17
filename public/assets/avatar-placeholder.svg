@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <rect width="200" height="240" fill="#FDE6F0" rx="12"/>
+  <!-- Hair back -->
+  <path d="M55 90 Q50 40 100 36 Q150 40 145 90 Q148 68 128 54 Q114 44 100 44 Q86 44 72 54 Q52 68 55 90Z" fill="#F9A94B"/>
+  <!-- Neck -->
+  <rect x="88" y="128" width="24" height="22" rx="8" fill="#FBD0E4"/>
+  <!-- Body / shirt -->
+  <path d="M38 240 Q38 158 70 150 L100 162 L130 150 Q162 158 162 240Z" fill="#F78FC0"/>
+  <!-- Collar -->
+  <path d="M82 152 Q100 168 118 152" stroke="#E83E8C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="96" rx="44" ry="46" fill="#FBD0E4"/>
+  <!-- Hair front -->
+  <path d="M56 88 Q54 60 72 50 Q86 42 100 42 Q114 42 128 50 Q146 60 144 88 Q136 70 118 64 Q100 58 82 64 Q64 70 56 88Z" fill="#F9A94B"/>
+  <!-- Hair fringe -->
+  <path d="M62 76 Q70 62 100 60 Q130 62 138 76" fill="#F9A94B"/>
+  <!-- Eyes -->
+  <ellipse cx="86" cy="98" rx="5" ry="5.5" fill="#6B3F1A"/>
+  <ellipse cx="114" cy="98" rx="5" ry="5.5" fill="#6B3F1A"/>
+  <!-- Eye shine -->
+  <circle cx="88" cy="96" r="1.5" fill="white"/>
+  <circle cx="116" cy="96" r="1.5" fill="white"/>
+  <!-- Blush -->
+  <ellipse cx="78" cy="110" rx="8" ry="5" fill="#F58BBE" opacity="0.5"/>
+  <ellipse cx="122" cy="110" rx="8" ry="5" fill="#F58BBE" opacity="0.5"/>
+  <!-- Smile -->
+  <path d="M88 116 Q100 126 112 116" stroke="#D63384" stroke-width="2" stroke-linecap="round" fill="none"/>
+</svg>
