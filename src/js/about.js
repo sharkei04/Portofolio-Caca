@@ -83,7 +83,9 @@ export function init() {
   if (avatarEl) {
     avatarEl.src = profile.avatar;
     avatarEl.alt = `Foto ${profile.fullName}`;
-    avatarEl.style.objectPosition = '50% 20%';
+    avatarEl.style.objectPosition = '50% 18%';
+    avatarEl.style.transform = 'scale(1.25)';
+    avatarEl.style.transformOrigin = '50% 25%';
   }
 
   const stickerEl = document.getElementById('about-name-sticker');
