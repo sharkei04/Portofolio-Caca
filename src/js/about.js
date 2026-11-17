@@ -55,7 +55,7 @@ export function init() {
   }
 
   const stickerEl = document.getElementById('about-name-sticker');
-  if (stickerEl) stickerEl.textContent = `I'm ${profile.name.split(' ')[0]}`;
+  if (stickerEl) stickerEl.textContent = `I'm ${profile.nickname ?? profile.name.split(' ')[0]}`;
 
   const bioEl = document.getElementById('about-bio');
   if (bioEl) {

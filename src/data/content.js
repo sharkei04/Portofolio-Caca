@@ -1,13 +1,14 @@
 export const content = {
   profile: {
     name: 'Keisya Rizkyka',
+    nickname: 'Caca',
     tagline: 'Full-Stack Web Developer',
     year: '2025',
-    location: 'Jakarta, Indonesia',
+    location: 'Palembang, Indonesia',
     bio: [
-      'Halo! Saya Keisya Rizkyka — mahasiswa Sistem Informasi semester 3 yang jatuh cinta dengan dunia front-end dan desain antarmuka.',
+      'Halo! Saya Keisya Rizkyka — mahasiswi Sistem Informasi Universitas Sriwijaya yang jatuh cinta dengan dunia front-end dan desain antarmuka.',
       'Saya percaya kode yang baik dan desain yang indah bisa berjalan beriringan. Proses dari wireframe Figma hingga deployment ke production adalah hal yang paling saya nikmati.',
-      'Di luar layar, saya senang membuat ilustrasi digital dan mengeksplorasi kafe-kafe estetik di Jakarta. ☕',
+      'Di luar layar, saya senang membuat ilustrasi digital dan mengeksplorasi kafe-kafe estetik di Palembang. ☕',
     ],
     avatar: '/assets/avatar-placeholder.svg',
   },
@@ -15,16 +16,16 @@ export const content = {
   education: [
     {
       type: 'university',
-      institution: 'Universitas Placeholder Nusantara',
-      degree: 'S1 Teknik Informatika',
-      period: '2021 – 2025',
-      gpa: 'IPK 3.87 / 4.00',
+      institution: 'Universitas Sriwijaya',
+      degree: 'S1 Sistem Informasi',
+      period: '2025 – Sekarang',
+      gpa: 'IPK 3.90 / 4.00',
     },
     {
       type: 'high-school',
-      institution: 'SMA Placeholder Negeri 1 Jakarta',
+      institution: 'SMA Negeri 01 Palembang',
       major: 'Jurusan IPA',
-      period: '2018 – 2021',
+      period: '2022 – 2025',
     },
   ],
 
