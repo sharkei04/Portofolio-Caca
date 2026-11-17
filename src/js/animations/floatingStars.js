@@ -9,14 +9,14 @@ export function initFloatingStars() {
   const tweens = [];
 
   activeStars.forEach((star, i) => {
-    const duration = 2.4 + (i % 4) * 0.5 + Math.random() * 0.6;
-    const yDist = 8 + (i % 3) * 4;
-    const rotDist = (i % 2 === 0 ? 1 : -1) * (6 + (i % 3) * 4);
-    const delay = (i % 5) * 0.25;
+    const duration = 2.0 + (i % 3) * 0.5;
+    const yDist = (i % 2 === 0 ? 1 : -1) * (14 + (i % 3) * 6);
+    const rotDist = (i % 2 === 0 ? 1 : -1) * (10 + (i % 3) * 8);
+    const delay = (i % 4) * 0.2;
 
     const t = gsap.to(star, {
-      y: `+=${yDist}`,
-      rotation: `+=${rotDist}`,
+      y: yDist,
+      rotation: rotDist,
       duration,
       delay,
       repeat: -1,
@@ -27,8 +27,8 @@ export function initFloatingStars() {
 
     const wobble = () => {
       gsap.to(star, {
-        scale: 1.25,
-        rotation: '+=20',
+        scale: 1.3,
+        rotation: '+=25',
         duration: 0.25,
         yoyo: true,
         repeat: 1,

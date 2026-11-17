@@ -5,14 +5,15 @@ export function initMarquee() {
   const track = strip?.querySelector('.marquee-track');
   if (!strip || !track) return;
 
-  // Clone children to ensure seamless continuous loop
-  const content = track.innerHTML;
-  track.innerHTML = content + content;
+  if (!track.dataset.duplicated) {
+    track.innerHTML += track.innerHTML;
+    track.dataset.duplicated = 'true';
+  }
 
   const tween = gsap.to(track, {
     xPercent: -50,
     ease: 'none',
-    duration: 24,
+    duration: 18,
     repeat: -1,
   });
 

@@ -355,6 +355,9 @@
   }
 
   .float-star {
+    display: block;
+    transform-box: fill-box;
+    transform-origin: center center;
     pointer-events: auto;
     cursor: grab;
     user-select: none;

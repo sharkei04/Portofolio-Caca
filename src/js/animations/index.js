@@ -14,34 +14,26 @@ import { initStickers } from './stickers.js';
 let mm = null;
 
 export function initAnimations() {
-  if (mm) mm.revert();
+  if (mm) {
+    try { mm.revert(); } catch (_) {}
+  }
   mm = gsap.matchMedia();
 
-  // Full motion when user has no preference for reduced motion
-  mm.add('(prefers-reduced-motion: no-preference)', () => {
-    initMarquee();
-    initHeroIntro();
-    initFloatingStars();
-    initScrollReveal();
-    initFolderTransitions();
-    initStickers();
-  });
+  // Primary animation activation
+  initMarquee();
+  initHeroIntro();
+  initFloatingStars();
+  initScrollReveal();
+  initFolderTransitions();
+  initStickers();
 
-  // Safe fallback for reduced-motion users
-  mm.add('(prefers-reduced-motion: reduce)', () => {
-    gsap.set('.reveal, .hero-letter, .float-star, .selection-frame, .selection-handle', {
-      clearProps: 'all',
-      opacity: 1,
-      visibility: 'visible',
-      scale: 1,
-      x: 0,
-      y: 0,
-    });
-  });
-
-  // Refresh ScrollTrigger when web fonts and assets finish loading
+  // ScrollTrigger refresh on fonts ready and window load
   if (document.fonts) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
-  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  if (document.readyState === 'complete') {
+    ScrollTrigger.refresh();
+  } else {
+    window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  }
 }

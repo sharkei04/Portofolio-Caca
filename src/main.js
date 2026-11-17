@@ -30,7 +30,7 @@ function initNav() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function bootstrap() {
   initNav();
   initHero();
   initAbout();
@@ -45,4 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   initAnimations();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrap);
+} else {
+  bootstrap();
+}
