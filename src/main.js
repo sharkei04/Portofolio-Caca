@@ -40,5 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initContact();
   initNavSpy();
+  document.querySelector('footer a[href="#home"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   initAnimations();
 });
