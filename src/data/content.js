@@ -12,7 +12,7 @@ export const content = {
       "I may be a little quiet at first, but I enjoy connecting with people and making them feel comfortable. I value meaningful conversations, teamwork, and the little things that make every experience memorable.",
       "From academic projects to being involved in AIESEC, each experience has taught me something new about responsibility, communication, leadership, and personal growth. Growth doesn't always come from having everything figured out. Sometimes it starts with trying something new, making mistakes, and learning to trust yourself along the way.",
     ],
-    avatar: '/assets/avatar-placeholder.svg',
+    avatar: '/assets/Keisya Rizkyka_Foto Formal.png',
     quickFacts: {
       basedIn:      'Indonesia',
       interestedIn: 'Technology, Leadership & People Development',
