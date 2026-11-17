@@ -129,9 +129,9 @@ export const content = {
   ],
 
   socialLinks: [
-    { label: 'Instagram', url: 'https://instagram.com/placeholder', icon: 'instagram' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/placeholder', icon: 'linkedin' },
-    { label: 'GitHub', url: 'https://github.com/placeholder', icon: 'github' },
-    { label: 'Email', url: 'mailto:keisya@placeholder.dev', icon: 'mail' },
+    { label: 'Instagram', url: 'https://www.instagram.com/keisyarzkaa',          icon: 'instagram' },
+    { label: 'LinkedIn',  url: 'https://www.linkedin.com/in/keisya-rizkyka',      icon: 'linkedin' },
+    { label: 'GitHub',    url: 'https://github.com/sharkei04',                    icon: 'github' },
+    { label: 'Email',     url: 'mailto:keisyarizkyka04@gmail.com',                icon: 'mail' },
   ],
 };
