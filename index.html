@@ -284,25 +284,25 @@
               </div>
 
               <!-- Top grid: photo (left) | bio + quick facts (right) -->
-              <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+              <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-stretch">
 
                 <!-- Left col: avatar (2/5) -->
-                <div class="lg:col-span-2 flex flex-col items-center lg:items-start">
+                <div class="lg:col-span-2 flex flex-col justify-center items-center lg:items-start">
                   <!-- Profile photo with pink frame -->
-                  <figure class="relative w-48 md:w-56 shrink-0">
-                    <div class="rounded-2xl border-4 border-[var(--color-pink-hot)] overflow-hidden shadow-lg bg-pink-50">
+                  <figure class="relative w-64 sm:w-72 md:w-80 lg:w-full max-w-[340px]">
+                    <div class="rounded-3xl border-4 border-[var(--color-pink-hot)] overflow-hidden shadow-xl bg-pink-50 w-full h-[360px] sm:h-[390px] lg:h-[400px]">
                       <img
                         id="about-avatar"
                         src="/assets/Keisya Rizkyka_Foto Formal.png"
                         alt="Photo of Keisya Rizkyka"
-                        class="w-full h-auto object-cover aspect-[4/5] block"
-                        width="224"
-                        height="280"
+                        class="w-full h-full object-cover object-top block"
+                        width="340"
+                        height="400"
                       />
                     </div>
                     <!-- Sticker pill overlapping bottom-right corner -->
                     <span
-                      class="pill-pink absolute -bottom-3 -right-4 !text-[0.7rem] shadow-md"
+                      class="pill-pink absolute -bottom-3.5 -right-2 sm:-right-4 !text-xs sm:!text-sm !px-4 !py-1.5 shadow-lg border-2 border-white"
                       id="about-name-sticker"
                       aria-hidden="true"
                     >
