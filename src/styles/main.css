@@ -174,11 +174,11 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
-    line-height: 1.25;
+    line-height: 1.35;
     padding-top: 0.25em;
-    padding-bottom: 0.08em;
-    padding-left: 0.02em;
-    padding-right: 0.02em;
+    padding-bottom: 0.1em;
+    padding-left: 0.04em;
+    padding-right: 0.04em;
     overflow: visible;
     flex-shrink: 0;
   }
@@ -186,11 +186,35 @@
   .hero-letter-script {
     font-family: var(--font-script);
     font-size: clamp(2rem, 6.5vw, 4.5rem);
+    padding-top: 0.7em;
+    margin-top: -0.6em;
+    padding-bottom: 0.2em;
+    margin-bottom: -0.15em;
+    padding-left: 0.1em;
+    padding-right: 0.14em;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-letter[data-letter="P"] {
+    padding-left: 0.16em;
+    padding-right: 0.2em;
+    padding-top: 0.75em;
+    margin-top: -0.65em;
+  }
+
+  .hero-letter[data-letter="i"] {
+    padding-left: 0.08em;
+    padding-right: 0.2em;
+    padding-top: 0.75em;
+    margin-top: -0.65em;
   }
 
   .hero-letter-pixel {
     font-family: var(--font-pixel);
     font-size: clamp(1.2rem, 3.8vw, 2.7rem);
+    position: relative;
+    z-index: 1;
   }
 
   /* Scalloped card — top + bottom CSS mask, pure CSS */
