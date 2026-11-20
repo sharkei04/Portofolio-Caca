@@ -1,7 +1,7 @@
 import { content } from '../data/content.js';
 import { openLightbox } from './lightbox.js';
 import { animateDialogOpen, animateDialogClose } from './animations/folders.js';
-import { initDocsMarquee } from './animations/docsMarquee.js';
+import { initDocsMarquee, initCertsMarquee } from './animations/docsMarquee.js';
 import { gsap } from 'gsap';
 
 function folderSVG() {
@@ -244,28 +244,55 @@ function renderPreviews() {
     initDocsMarquee();
   }
 
-  const certPreview = document.getElementById('certs-preview-grid');
-  if (certPreview) {
-    const certs = content.projects.certs.slice(0, 6);
-    certPreview.innerHTML = certs
+  const certTrack = document.getElementById('certs-preview-track');
+  if (certTrack) {
+    const baseCerts = content.projects.certs;
+    // Repeat items so half-track is at least 6 cards for seamless infinite marquee loop
+    const repeatedCerts = baseCerts.length >= 6
+      ? [...baseCerts, ...baseCerts]
+      : [...baseCerts, ...baseCerts, ...baseCerts, ...baseCerts];
+
+    certTrack.innerHTML = repeatedCerts
       .map(
-        (item, idx) => `
-        <button type="button" class="cert-preview-item group text-left rounded-xl overflow-hidden border-2 border-yellow-200 bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] cursor-pointer" data-index="${idx}">
-          <img src="${item.image}" alt="${item.alt}" class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="240" height="144" />
-          <div class="p-2.5">
-            <p class="font-pixel text-xs text-[var(--color-year-green)] font-bold truncate">${item.title}</p>
-            <p class="text-[0.7rem] text-[var(--color-body-green)] mt-0.5">${item.issuer} &bull; ${item.year}</p>
-          </div>
-        </button>`,
+        (item, i) => {
+          const originalIdx = i % baseCerts.length;
+          return `
+          <button
+            type="button"
+            class="cert-preview-item group text-left rounded-2xl overflow-hidden border-2 border-yellow-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] cursor-pointer w-72 sm:w-80 shrink-0"
+            data-index="${originalIdx}"
+          >
+            <div class="overflow-hidden bg-pink-50/40">
+              <img
+                src="${item.image}"
+                alt="${item.alt}"
+                class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                width="320"
+                height="176"
+              />
+            </div>
+            <div class="p-3.5 bg-white border-t border-pink-50">
+              <p class="font-pixel text-xs sm:text-sm text-[var(--color-year-green)] font-bold truncate">
+                ${item.title}
+              </p>
+              <p class="text-[0.7rem] text-[var(--color-body-green)] mt-0.5 truncate">
+                ${item.issuer} &bull; ${item.year}
+              </p>
+            </div>
+          </button>`;
+        },
       )
       .join('');
 
-    certPreview.querySelectorAll('.cert-preview-item').forEach((btn) => {
+    certTrack.querySelectorAll('.cert-preview-item').forEach((btn) => {
       btn.addEventListener('click', () => {
         const idx = Number(btn.getAttribute('data-index'));
         openLightbox(content.projects.certs, idx, btn);
       });
     });
+
+    initCertsMarquee();
   }
 
   document.getElementById('view-all-docs')?.addEventListener('click', (e) => {

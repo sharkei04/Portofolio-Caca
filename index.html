@@ -647,11 +647,17 @@
               </button>
             </div>
 
+            <!-- Certificates auto-scrolling ticker -->
             <div
-              id="certs-preview-grid"
-              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+              id="certs-ticker-container"
+              class="overflow-hidden py-3 -mx-2 px-2 relative"
             >
-              <!-- Rendered by folders.js -->
+              <div
+                id="certs-preview-track"
+                class="flex gap-6 w-max items-stretch will-change-transform"
+              >
+                <!-- Rendered by folders.js -->
+              </div>
             </div>
           </div>
         </div>
