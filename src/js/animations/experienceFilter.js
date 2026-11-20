@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { Flip } from 'gsap/Flip';
 
 export function animateFilterTransition(container, renderCallback) {
   if (!container || !renderCallback) {
@@ -6,44 +7,28 @@ export function animateFilterTransition(container, renderCallback) {
     return;
   }
 
-  const currentHeight = container.offsetHeight;
-  container.style.minHeight = `${currentHeight}px`;
-
   const oldItems = container.querySelectorAll('.reveal');
   if (!oldItems.length) {
     renderCallback();
-    container.style.minHeight = '';
     return;
   }
 
-  const ctx = gsap.context(() => {
-    gsap.to(oldItems, {
-      opacity: 0,
-      y: -8,
-      duration: 0.18,
-      stagger: 0.02,
-      ease: 'power2.in',
-      onComplete: () => {
-        renderCallback();
+  const state = Flip.getState(oldItems);
 
-        const newItems = container.querySelectorAll('.reveal');
-        gsap.fromTo(
-          newItems,
-          { opacity: 0, y: 14 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.32,
-            stagger: 0.04,
-            ease: 'power2.out',
-            onComplete: () => {
-              container.style.minHeight = '';
-            },
-          },
-        );
-      },
-    });
-  }, container);
+  renderCallback();
 
-  return () => ctx.revert();
+  const newItems = container.querySelectorAll('.reveal');
+
+  Flip.from(state, {
+    targets: newItems,
+    duration: 0.6,
+    ease: 'power3.out',
+    stagger: 0.04,
+    absolute: true,
+    fade: true,
+    onEnter: (elements) =>
+      gsap.fromTo(elements, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.04 }),
+    onLeave: (elements) =>
+      gsap.to(elements, { opacity: 0, y: -10, duration: 0.3 }),
+  });
 }

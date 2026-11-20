@@ -1,6 +1,9 @@
 import { gsap } from 'gsap';
 
 export function initFloatingStars() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return () => {};
+
   const isMobile = window.innerWidth < 768;
   const maxStars = isMobile ? 6 : 14;
   const allStars = Array.from(document.querySelectorAll('.float-star'));
@@ -9,10 +12,10 @@ export function initFloatingStars() {
   const tweens = [];
 
   activeStars.forEach((star, i) => {
-    const duration = 2.0 + (i % 3) * 0.5;
-    const yDist = (i % 2 === 0 ? 1 : -1) * (14 + (i % 3) * 6);
-    const rotDist = (i % 2 === 0 ? 1 : -1) * (10 + (i % 3) * 8);
-    const delay = (i % 4) * 0.2;
+    const duration = 2.4 + (i % 3) * 0.6;
+    const yDist = (i % 2 === 0 ? 1 : -1) * (12 + (i % 3) * 5);
+    const rotDist = (i % 2 === 0 ? 1 : -1) * (8 + (i % 3) * 6);
+    const delay = Math.random() * 1.5;
 
     const t = gsap.to(star, {
       y: yDist,

@@ -335,8 +335,6 @@
   .nav-active {
     color: var(--color-pink-hot) !important;
     font-weight: 700 !important;
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 
   /* Experience timeline */
@@ -716,6 +714,120 @@
 
     .vol-slider {
       width: 80px;
+    }
+  }
+
+  /* ── Back to Top Button ── */
+  .back-to-top-btn {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 55;
+    width: 50px;
+    height: 50px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--color-pink-hot);
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--color-pink-hot);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    box-shadow: 0 4px 18px rgba(240, 80, 143, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, opacity;
+    padding: 0;
+  }
+  .back-to-top-btn:hover {
+    background: var(--color-pink-hot);
+    color: white;
+    box-shadow: 0 6px 24px rgba(240, 80, 143, 0.45);
+  }
+  .btt-arrow {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .back-to-top-btn {
+      right: 1rem;
+      bottom: 5rem;
+    }
+  }
+
+  /* ── Nav Pill Indicator ── */
+  .nav-pill-indicator {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #F78FC0, #FFE68A);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  /* ── Toggle Arrow ── */
+  .toggle-arrow {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  /* ── Equalizer Bars ── */
+  .eq-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  .eq-bar {
+    width: 3px;
+    height: 100%;
+    background: var(--color-pink-hot);
+    border-radius: 1px;
+    transform-origin: bottom center;
+  }
+  .eq-paused .eq-bar {
+    transform: scaleY(0.25);
+  }
+
+  /* ── Custom Star Cursor ── */
+  .custom-star-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+  }
+  .star-trail-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-pink-hot);
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .custom-star-cursor,
+    .star-trail-dot {
+      display: none !important;
     }
   }
 }

@@ -1,6 +1,18 @@
 import { gsap } from 'gsap';
 
 export function initHeroIntro() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    gsap.set('.selection-frame, .selection-handle, .hero-letter, #hero-name, #hero-year, #hero-role, #hero-tagline, #hero-crosshair, #hero-cursor', {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      rotation: 0,
+    });
+    return;
+  }
+
   const bgStar = document.getElementById('hero-bg-star');
   const frame = document.querySelector('.selection-frame');
   const handles = document.querySelectorAll('.selection-handle');

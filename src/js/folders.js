@@ -1,6 +1,6 @@
 import { content } from '../data/content.js';
 import { openLightbox } from './lightbox.js';
-import { animateDialogOpen, animateDialogClose } from './animations/folders.js';
+import { animateDialogOpen, animateDialogClose, animateFolderClick } from './animations/folders.js';
 import { initDocsMarquee, initCertsMarquee } from './animations/docsMarquee.js';
 import { gsap } from 'gsap';
 
@@ -191,7 +191,9 @@ function renderFolders() {
   container.querySelectorAll('.folder-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-folder');
-      openFolderDialog(id, btn);
+      animateFolderClick(btn, () => {
+        openFolderDialog(id, btn);
+      });
     });
   });
 }

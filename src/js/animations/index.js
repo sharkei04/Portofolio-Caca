@@ -1,8 +1,9 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Flip } from 'gsap/Flip';
 import { Draggable } from 'gsap/Draggable';
 
-gsap.registerPlugin(ScrollTrigger, Draggable);
+gsap.registerPlugin(ScrollTrigger, Flip, Draggable);
 
 import { initMarquee } from './marquee.js';
 import { initHeroIntro } from './heroIntro.js';
@@ -10,24 +11,29 @@ import { initFloatingStars } from './floatingStars.js';
 import { initScrollReveal } from './scrollReveal.js';
 import { initFolderTransitions } from './folders.js';
 import { initStickers } from './stickers.js';
-
-let mm = null;
+import { initParallax } from './parallax.js';
+import { initPolaroid } from './polaroid.js';
+import { initBackToTop } from './backToTop.js';
+import { initNavPill } from './navPill.js';
+import { initCardWiggle } from './cardWiggle.js';
+import { initStarCursor } from './starCursor.js';
+import { initEqualizer } from './equalizer.js';
 
 export function initAnimations() {
-  if (mm) {
-    try { mm.revert(); } catch (_) {}
-  }
-  mm = gsap.matchMedia();
-
-  // Primary animation activation
   initMarquee();
   initHeroIntro();
   initFloatingStars();
   initScrollReveal();
   initFolderTransitions();
   initStickers();
+  initParallax();
+  initPolaroid();
+  initBackToTop();
+  initNavPill();
+  initCardWiggle();
+  initStarCursor();
+  initEqualizer();
 
-  // ScrollTrigger refresh on fonts ready and window load
   if (document.fonts) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }

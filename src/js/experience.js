@@ -1,6 +1,7 @@
 import { content } from '../data/content.js';
 import { Icons } from './icons.js';
 import { animateFilterTransition } from './animations/experienceFilter.js';
+import { gsap } from 'gsap';
 
 let activeFilter = 'all';
 let isExpanded = false;
@@ -37,7 +38,7 @@ function renderEntry(entry, index) {
   }
 
   return `
-    <article class="relative pl-10 reveal" data-index="${index}" id="${entry.id}">
+    <article class="relative pl-10 reveal" data-index="${index}" id="${entry.id}" data-flip-id="${entry.id}">
       <span class="absolute left-0 top-1 w-6 h-6 flex items-center justify-center" aria-hidden="true">
         ${Icons.star5(starColor, 'w-5 h-5')}
       </span>
@@ -73,11 +74,11 @@ function renderTimelineDOM() {
     } else {
       toggleBtn.classList.remove('hidden');
       if (isExpanded) {
-        toggleBtn.textContent = 'Show less \u2191';
+        toggleBtn.childNodes[0].textContent = 'Show less ';
         toggleBtn.setAttribute('aria-expanded', 'true');
       } else {
         const remaining = filtered.length - 5;
-        toggleBtn.textContent = `Show more (${remaining}) \u2193`;
+        toggleBtn.childNodes[0].textContent = `Show more (${remaining}) `;
         toggleBtn.setAttribute('aria-expanded', 'false');
       }
     }
@@ -140,9 +141,47 @@ function initToggle() {
   const toggleBtn = document.getElementById('experience-toggle-btn');
   if (!toggleBtn) return;
 
+  const arrow = document.createElement('span');
+  arrow.className = 'toggle-arrow';
+  arrow.textContent = '↓';
+  toggleBtn.appendChild(arrow);
+
   toggleBtn.addEventListener('click', () => {
+    const timelineEl = document.getElementById('experience-timeline');
+    if (!timelineEl) return;
+
     isExpanded = !isExpanded;
-    updateTimeline(false);
+
+    gsap.to(arrow, {
+      rotation: isExpanded ? 180 : 0,
+      duration: 0.35,
+      ease: 'back.out(2)',
+    });
+
+    const startHeight = timelineEl.offsetHeight;
+    renderTimelineDOM();
+    const endHeight = timelineEl.offsetHeight;
+
+    gsap.fromTo(
+      timelineEl,
+      { height: startHeight, overflow: 'hidden' },
+      {
+        height: endHeight,
+        duration: 0.5,
+        ease: 'power3.out',
+        clearProps: 'height,overflow',
+      },
+    );
+
+    if (isExpanded) {
+      const articles = timelineEl.querySelectorAll('article');
+      const newArticles = Array.from(articles).slice(5);
+      gsap.fromTo(
+        newArticles,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+      );
+    }
   });
 }
 

@@ -1,5 +1,48 @@
 import { gsap } from 'gsap';
 
+export function animateFolderClick(btn, onComplete) {
+  const frontFlap = btn.querySelector('.folder-wrap svg path:nth-child(2)');
+  const peek = btn.querySelector('.folder-peek');
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      if (onComplete) onComplete();
+      gsap.delayedCall(0.35, () => {
+        gsap.set([frontFlap, peek], { clearProps: 'all' });
+      });
+    },
+  });
+
+  if (frontFlap) {
+    tl.to(frontFlap, {
+      scaleY: 0.15,
+      transformOrigin: 'bottom center',
+      duration: 0.22,
+      ease: 'power2.in',
+    }, 0);
+  }
+
+  if (peek) {
+    tl.fromTo(
+      peek,
+      { y: 0, opacity: 1, scale: 0.85, rotation: -4 },
+      {
+        y: -44,
+        rotation: 12,
+        scale: 1.15,
+        opacity: 1,
+        duration: 0.32,
+        ease: 'back.out(1.8)',
+      },
+      0.04,
+    );
+  } else {
+    tl.to(btn, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 }, 0);
+  }
+
+  return tl;
+}
+
 export function animateDialogOpen(dialog, openerEl) {
   const contentBox = dialog.querySelector('.bg-white');
   const items = dialog.querySelectorAll('#folder-dialog-body > div > *');
