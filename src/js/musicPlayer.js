@@ -1,15 +1,62 @@
 import { gsap } from 'gsap';
 
 export function initMusicPlayer() {
-  const player  = document.getElementById('music-player');
-  const audio   = document.getElementById('bg-music');
-  const toggle  = document.getElementById('music-toggle');
-  const title   = document.getElementById('music-title');
-  const disc    = document.getElementById('music-disc');
-  const iconPlay  = document.getElementById('icon-play');
-  const iconPause = document.getElementById('icon-pause');
+  const player        = document.getElementById('music-player');
+  const audio         = document.getElementById('bg-music');
+  const toggle        = document.getElementById('music-toggle');
+  const title         = document.getElementById('music-title');
+  const disc          = document.getElementById('music-disc');
+  const iconPlay      = document.getElementById('icon-play');
+  const iconPause     = document.getElementById('icon-pause');
+  const volBtn        = document.getElementById('music-volume-btn');
+  const volSlider     = document.getElementById('music-volume-slider');
+  const iconVolHigh   = document.getElementById('icon-vol-high');
+  const iconVolMute   = document.getElementById('icon-vol-mute');
 
   if (!player || !audio || !toggle) return;
+
+  /* Default volume */
+  audio.volume = 0.7;
+  let lastVolume = 0.7;
+
+  function updateVolumeUI(val) {
+    if (volSlider) volSlider.value = val;
+    if (val <= 0.02) {
+      iconVolHigh?.classList.add('hidden');
+      iconVolMute?.classList.remove('hidden');
+      volBtn?.setAttribute('aria-label', 'Unmute background music');
+    } else {
+      iconVolHigh?.classList.remove('hidden');
+      iconVolMute?.classList.add('hidden');
+      volBtn?.setAttribute('aria-label', 'Mute background music');
+    }
+  }
+
+  if (volSlider) {
+    volSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      audio.volume = val;
+      if (val > 0.02) {
+        lastVolume = val;
+      }
+      updateVolumeUI(val);
+    });
+  }
+
+  if (volBtn) {
+    volBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio.volume > 0.02) {
+        lastVolume = audio.volume;
+        audio.volume = 0;
+        updateVolumeUI(0);
+      } else {
+        const restore = lastVolume > 0.02 ? lastVolume : 0.7;
+        audio.volume = restore;
+        updateVolumeUI(restore);
+      }
+    });
+  }
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -828,10 +828,45 @@
         </svg>
       </button>
 
-      <!-- Song info panel -->
+      <!-- Song info panel with volume controls -->
       <div id="music-info">
-        <span class="music-note">🎵</span>
-        <span id="music-title">Song Playing</span>
+        <div class="flex items-center gap-1 min-w-0">
+          <span class="music-note">🎵</span>
+          <span id="music-title">Song Playing</span>
+        </div>
+
+        <!-- Volume controls -->
+        <div class="music-volume-wrap">
+          <button
+            type="button"
+            id="music-volume-btn"
+            aria-label="Mute or unmute volume"
+            class="vol-btn"
+            title="Mute / Unmute"
+          >
+            <!-- High volume icon -->
+            <svg id="icon-vol-high" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <!-- Mute icon (hidden by default) -->
+            <svg id="icon-vol-mute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <input
+            type="range"
+            id="music-volume-slider"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.7"
+            aria-label="Volume level"
+            class="vol-slider"
+          />
+        </div>
       </div>
     </div>
     <!-- ══ /Floating Music Player ══ -->
