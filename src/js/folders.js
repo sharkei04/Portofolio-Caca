@@ -40,8 +40,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
     bodyEl.innerHTML = `
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         ${items
-          .map(
-            (item, idx) => `
+        .map(
+          (item, idx) => `
           <button type="button" class="doc-card text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] rounded-xl" data-index="${idx}">
             <div class="overflow-hidden rounded-xl border-2 border-pink-100 bg-white shadow-sm transition-transform duration-200 group-hover:-translate-y-1">
               <img src="${item.image}" alt="${item.alt}" class="w-full h-44 object-cover" loading="lazy" width="300" height="176" />
@@ -50,8 +50,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
               </div>
             </div>
           </button>`,
-          )
-          .join('')}
+        )
+        .join('')}
       </div>`;
 
     bodyEl.querySelectorAll('.doc-card').forEach((card) => {
@@ -64,8 +64,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
     bodyEl.innerHTML = `
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         ${items
-          .map(
-            (item, idx) => `
+        .map(
+          (item, idx) => `
           <button type="button" class="cert-card text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] rounded-xl" data-index="${idx}">
             <div class="overflow-hidden rounded-xl border-2 border-yellow-200 bg-white shadow-sm transition-transform duration-200 group-hover:-translate-y-1">
               <img src="${item.image}" alt="${item.alt}" class="w-full h-44 object-cover" loading="lazy" width="300" height="176" />
@@ -75,8 +75,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
               </div>
             </div>
           </button>`,
-          )
-          .join('')}
+        )
+        .join('')}
       </div>`;
 
     bodyEl.querySelectorAll('.cert-card').forEach((card) => {
@@ -89,8 +89,8 @@ export function openFolderDialog(categoryId, openerEl = null) {
     bodyEl.innerHTML = `
       <div class="grid grid-cols-1 ${items.length > 1 ? 'md:grid-cols-2' : 'max-w-lg mx-auto'} gap-6">
         ${items
-          .map(
-            (proj) => `
+        .map(
+          (proj) => `
           <div class="rounded-2xl border-2 border-pink-100 bg-white p-5 shadow-sm flex flex-col justify-between">
             <div>
               <div class="overflow-hidden rounded-xl border border-pink-50 mb-4 bg-gray-50">
@@ -102,18 +102,17 @@ export function openFolderDialog(categoryId, openerEl = null) {
                 ${proj.tech.map((t) => `<span class="pill-yellow !text-[0.65rem] !px-2 !py-0.5">${t}</span>`).join('')}
               </div>
             </div>
-            ${
-              proj.demo || proj.repo
-                ? `
+            ${proj.demo || proj.repo
+              ? `
               <div class="flex items-center gap-3 mt-4 pt-3 border-t border-pink-100">
                 ${proj.demo ? `<a href="${proj.demo}" target="_blank" rel="noopener noreferrer" class="pill-pink !text-xs !px-3 !py-1">Live Demo</a>` : ''}
                 ${proj.repo ? `<a href="${proj.repo}" target="_blank" rel="noopener noreferrer" class="pill-yellow !text-xs !px-3 !py-1">Repository</a>` : ''}
               </div>`
-                : ''
+              : ''
             }
           </div>`,
-          )
-          .join('')}
+        )
+        .join('')}
       </div>`;
   }
 
@@ -133,25 +132,29 @@ function renderFolders() {
 
   container.innerHTML = content.projectCategories
     .map(
-      (cat) => {
+      (cat, idx) => {
         const previewImg = getFolderPreview(cat.id);
         const previewHTML = previewImg
           ? `<div class="folder-peek" aria-hidden="true">
                <img src="${previewImg}" alt="" class="folder-peek-img" draggable="false" />
              </div>`
           : '';
+        const tapMeBadge = idx === 0
+          ? `<span class="folder-tap-me">Tap me! ✨</span>`
+          : '';
         return `
       <button
         type="button"
-        class="folder-btn group flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] transition-all cursor-pointer"
+        class="folder-btn group flex flex-col items-center gap-2.5 p-2.5 sm:p-3 rounded-2xl hover:bg-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] transition-all cursor-pointer w-28 sm:w-32"
         data-folder="${cat.id}"
         aria-haspopup="dialog"
       >
         <div class="folder-wrap">
+          ${tapMeBadge}
           ${previewHTML}
           ${folderSVG()}
         </div>
-        <span class="font-script text-xl md:text-2xl text-[var(--color-toc-text-purple)] italic leading-tight text-center max-w-[130px]">
+        <span class="font-pixel text-xs sm:text-sm text-[var(--color-magenta)] font-bold leading-snug text-center max-w-[120px]">
           ${cat.label}
         </span>
       </button>`;
