@@ -15,9 +15,9 @@ export function initMusicPlayer() {
 
   if (!player || !audio || !toggle) return;
 
-  /* Default volume */
-  audio.volume = 0.7;
-  let lastVolume = 0.7;
+  /* Default comfortable background music volume (25%) */
+  audio.volume = 0.25;
+  let lastVolume = 0.25;
 
   function updateVolumeUI(val) {
     if (volSlider) volSlider.value = val;
