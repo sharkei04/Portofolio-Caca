@@ -6,7 +6,6 @@ import { init as initExperience } from './js/experience.js';
 import { init as initSkills }     from './js/skills.js';
 import { init as initFolders }    from './js/folders.js';
 import { init as initLightbox }   from './js/lightbox.js';
-import { init as initContact }    from './js/contact.js';
 import { init as initNavSpy }     from './js/navSpy.js';
 
 function initNav() {
@@ -38,7 +37,6 @@ function bootstrap() {
   initSkills();
   initFolders();
   initLightbox();
-  initContact();
   initNavSpy();
   document.querySelector('footer a[href="#home"]')?.addEventListener('click', (e) => {
     e.preventDefault();
