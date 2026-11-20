@@ -13,15 +13,14 @@ export function initMusicPlayer() {
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Spinning disc tween — created once, starts paused */
+  /* Spinning disc tween — always spinning, speed up when playing */
   let discTween = null;
   if (!prefersReduced && disc) {
     discTween = gsap.to(disc, {
       rotation: 360,
-      duration: 4,
+      duration: 6,
       repeat: -1,
       ease: 'none',
-      paused: true,
       transformOrigin: '50% 50%',
     });
   }
@@ -40,14 +39,16 @@ export function initMusicPlayer() {
       toggle.setAttribute('aria-label', 'Pause background music');
       toggle.setAttribute('aria-pressed', 'true');
       player.classList.add('is-playing');
-      discTween?.play();
+      /* Speed up disc when playing */
+      if (discTween) gsap.to(discTween, { timeScale: 2.5, duration: 0.6, ease: 'power2.inOut' });
     } else {
       iconPlay?.classList.remove('hidden');
       iconPause?.classList.add('hidden');
       toggle.setAttribute('aria-label', 'Play background music');
       toggle.setAttribute('aria-pressed', 'false');
       player.classList.remove('is-playing');
-      discTween?.pause();
+      /* Slow down disc when paused */
+      if (discTween) gsap.to(discTween, { timeScale: 0.3, duration: 0.8, ease: 'power2.inOut' });
     }
   }
 
