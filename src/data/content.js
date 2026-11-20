@@ -150,11 +150,12 @@ export const content = {
   ],
 
   techSkills: [
-    { name: 'HTML5',          color: '#E34F26', rating: 4 },
-    { name: 'CSS & Tailwind', color: '#38BDF8', rating: 4 },
-    { name: 'JavaScript',     color: '#F7DF1E', rating: 3 },
-    { name: 'Java',           color: '#ED8B00', rating: 3 },
-    { name: 'SQL / MySQL',    color: '#4479A1', rating: 3 },
+    { name: 'C++',            color: '#00599C' },
+    { name: 'HTML5',          color: '#E34F26' },
+    { name: 'CSS & Tailwind', color: '#38BDF8' },
+    { name: 'JavaScript',     color: '#F7DF1E' },
+    { name: 'Java',           color: '#ED8B00' },
+    { name: 'SQL / MySQL',    color: '#4479A1' },
   ],
 
   projectCategories: [
