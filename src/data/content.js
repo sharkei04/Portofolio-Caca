@@ -289,7 +289,7 @@ export const content = {
         alt:    'Sertifikat Kakak Mentor INAGURASI 2026',
       },
       {
-        image:  '/assets/Peserta tim 2 Project PTI #1.jpeg',
+        image:  '/assets/Peserta tim 2 Project PTI 1.jpeg',
         title:  'Peserta Tim 2 — Project PTI #1',
         issuer: 'HIMSI FASILKOM UNSRI',
         year:   '2026',
