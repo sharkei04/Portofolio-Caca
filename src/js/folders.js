@@ -132,15 +132,12 @@ function renderFolders() {
 
   container.innerHTML = content.projectCategories
     .map(
-      (cat, idx) => {
+      (cat) => {
         const previewImg = getFolderPreview(cat.id);
         const previewHTML = previewImg
           ? `<div class="folder-peek" aria-hidden="true">
                <img src="${previewImg}" alt="" class="folder-peek-img" draggable="false" />
              </div>`
-          : '';
-        const tapMeBadge = idx === 0
-          ? `<span class="folder-tap-me">Tap me! ✨</span>`
           : '';
         return `
       <button
@@ -150,7 +147,6 @@ function renderFolders() {
         aria-haspopup="dialog"
       >
         <div class="folder-wrap">
-          ${tapMeBadge}
           ${previewHTML}
           ${folderSVG()}
         </div>
