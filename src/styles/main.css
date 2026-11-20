@@ -397,4 +397,110 @@
   .float-star:active {
     cursor: grabbing;
   }
+
+  /* ── Floating Music Player ── */
+  #music-player {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.72);
+    border: 2px solid var(--color-pink-hot);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+    box-shadow: 0 4px 20px rgba(240, 80, 143, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    max-width: 56px;
+    overflow: hidden;
+    will-change: transform, opacity;
+  }
+
+  #music-player:hover,
+  #music-player.is-playing {
+    max-width: 280px;
+    box-shadow: 0 6px 28px rgba(240, 80, 143, 0.4);
+    background: rgba(255, 255, 255, 0.9);
+    transition: max-width 0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+  }
+
+  #music-toggle {
+    position: relative;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  #music-disc {
+    position: absolute;
+    inset: 0;
+    width: 48px;
+    height: 48px;
+    transform-origin: center center;
+  }
+
+  #icon-play,
+  #icon-pause {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    drop-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  #music-info {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    min-width: 0;
+    transition: opacity 0.3s ease 0.1s;
+  }
+
+  #music-player:hover #music-info,
+  #music-player.is-playing #music-info {
+    opacity: 1;
+  }
+
+  .music-note {
+    font-size: 0.85rem;
+    animation: music-bounce 1.2s ease-in-out infinite alternate;
+  }
+
+  #music-player:not(.is-playing) .music-note {
+    animation-play-state: paused;
+  }
+
+  @keyframes music-bounce {
+    from { transform: translateY(0);    }
+    to   { transform: translateY(-3px); }
+  }
+
+  #music-title {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-magenta);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+  }
 }

@@ -7,6 +7,7 @@ import { init as initSkills }     from './js/skills.js';
 import { init as initFolders }    from './js/folders.js';
 import { init as initLightbox }   from './js/lightbox.js';
 import { init as initNavSpy }     from './js/navSpy.js';
+import { initMusicPlayer }        from './js/musicPlayer.js';
 
 function initNav() {
   const btn  = document.getElementById('hamburger');
@@ -43,6 +44,7 @@ function bootstrap() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   initAnimations();
+  initMusicPlayer();
 }
 
 if (document.readyState === 'loading') {
