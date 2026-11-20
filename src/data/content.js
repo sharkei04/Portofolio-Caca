@@ -37,6 +37,23 @@ export const content = {
     },
   ],
 
+  organizations: [
+    {
+      name:      'HIMSI FASILKOM UNSRI',
+      role:      'Active Member — Departemen RISTEK',
+      logo:      '/assets/LOGO HIMSI.jpeg',
+      website:   'https://himsiunsri.org/',
+      instagram: 'https://www.instagram.com/himsiunsri',
+    },
+    {
+      name:      'AIESEC in UNSRI',
+      role:      'Intern of Engagement',
+      logo:      '/assets/LOGO AIESEC.jpeg',
+      website:   null,
+      instagram: 'https://www.instagram.com/lead.withunsri',
+    },
+  ],
+
   experienceIntro: 'Every experience has a story behind it. From being a delegate to becoming a coach, and from learning new things to taking on challenges outside my comfort zone, each step has shaped the way I see myself and the people around me.',
 
   experience: [

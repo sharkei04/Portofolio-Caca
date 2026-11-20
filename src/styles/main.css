@@ -398,6 +398,25 @@
     cursor: grabbing;
   }
 
+  /* ── Organization links ── */
+  .org-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: var(--color-magenta);
+    background: var(--color-pink-pale);
+    border: 1px solid var(--color-pink-soft);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .org-link:hover {
+    background: var(--color-pink-hot);
+    color: white;
+    transform: scale(1.12);
+  }
+
   /* ── Folder peek-on-hover ── */
   .folder-wrap {
     position: relative;

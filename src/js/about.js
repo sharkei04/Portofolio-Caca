@@ -55,6 +55,37 @@ function renderQuickFacts(quickFacts) {
     </div>`;
 }
 
+function renderOrganizations(list) {
+  return list
+    .map(
+      (org) => `
+      <div class="org-card flex items-center gap-3 p-3 rounded-xl border border-pink-100 bg-[var(--color-pink-pale)]/70 shadow-xs">
+        <img
+          src="${org.logo}"
+          alt="${org.name} logo"
+          class="w-11 h-11 rounded-lg object-cover border border-pink-200 bg-white shrink-0"
+          loading="lazy"
+          width="44" height="44"
+        />
+        <div class="min-w-0 flex-1">
+          <p class="font-semibold text-sm text-[var(--color-year-green)] leading-snug truncate">${org.name}</p>
+          <p class="text-xs text-[var(--color-body-green)] mt-0.5 truncate">${org.role}</p>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          ${org.website ? `
+          <a href="${org.website}" target="_blank" rel="noopener noreferrer" aria-label="${org.name} website" class="org-link" title="Website">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </a>` : ''}
+          ${org.instagram ? `
+          <a href="${org.instagram}" target="_blank" rel="noopener noreferrer" aria-label="${org.name} Instagram" class="org-link" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>` : ''}
+        </div>
+      </div>`,
+    )
+    .join('');
+}
+
 function renderSocialLinks(links) {
   return links
     .filter((l) => l.url)
@@ -77,7 +108,7 @@ function renderSocialLinks(links) {
 }
 
 export function init() {
-  const { profile, education, socialLinks } = content;
+  const { profile, education, organizations, socialLinks } = content;
 
   const avatarEl = document.getElementById('about-avatar');
   if (avatarEl) {
@@ -104,6 +135,11 @@ export function init() {
   const eduEl = document.getElementById('about-education');
   if (eduEl) {
     eduEl.innerHTML = renderEducation(education);
+  }
+
+  const orgEl = document.getElementById('about-organizations');
+  if (orgEl && organizations?.length) {
+    orgEl.innerHTML = renderOrganizations(organizations);
   }
 
   const linksEl = document.getElementById('contact-links');
