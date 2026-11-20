@@ -35,8 +35,8 @@ function renderQuickFacts(quickFacts) {
   if (!quickFacts) return '';
   return `
     <div class="p-3.5 rounded-xl border border-pink-200 bg-white shadow-xs space-y-2 text-xs text-[var(--color-body-green)]">
-      <p class="font-pixel text-[var(--color-magenta)] font-bold text-xs flex items-center gap-1.5">
-        <span>✨</span> Quick Facts
+      <p class="font-pixel text-[var(--color-magenta)] font-bold text-xs">
+        Quick Facts
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-0.5">
         <div class="bg-[var(--color-pink-pale)]/50 rounded-lg p-2.5 border border-pink-100/60">
