@@ -2,6 +2,7 @@ import { content } from '../data/content.js';
 import { openLightbox } from './lightbox.js';
 import { animateDialogOpen, animateDialogClose } from './animations/folders.js';
 import { initDocsMarquee } from './animations/docsMarquee.js';
+import { gsap } from 'gsap';
 
 function folderSVG() {
   return `<svg viewBox="0 0 80 64" width="72" height="58" class="drop-shadow-sm transition-transform duration-200 group-hover:scale-105" aria-hidden="true">
@@ -9,6 +10,13 @@ function folderSVG() {
     <path d="M4 22H76V52C76 56.42 72.42 60 68 60H12C7.58 60 4 56.42 4 52V22Z" fill="#FFE066" opacity="0.6"/>
     <path d="M12 28H68V48H12V28Z" fill="#FFF280" opacity="0.4"/>
   </svg>`;
+}
+
+/** Pick the best preview image for a folder category */
+function getFolderPreview(categoryId) {
+  const projects = content.projects[categoryId];
+  if (!projects || projects.length === 0) return null;
+  return projects[0].image || projects[0]?.image || null;
 }
 
 let lastActiveOpener = null;
@@ -125,20 +133,61 @@ function renderFolders() {
 
   container.innerHTML = content.projectCategories
     .map(
-      (cat) => `
+      (cat) => {
+        const previewImg = getFolderPreview(cat.id);
+        const previewHTML = previewImg
+          ? `<div class="folder-peek" aria-hidden="true">
+               <img src="${previewImg}" alt="" class="folder-peek-img" draggable="false" />
+             </div>`
+          : '';
+        return `
       <button
         type="button"
         class="folder-btn group flex flex-col items-center gap-2 p-3 rounded-2xl hover:bg-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-pink-hot)] transition-all cursor-pointer"
         data-folder="${cat.id}"
         aria-haspopup="dialog"
       >
-        ${folderSVG()}
+        <div class="folder-wrap">
+          ${previewHTML}
+          ${folderSVG()}
+        </div>
         <span class="font-script text-xl md:text-2xl text-[var(--color-toc-text-purple)] italic leading-tight text-center max-w-[130px]">
           ${cat.label}
         </span>
-      </button>`,
+      </button>`;
+      },
     )
     .join('');
+
+  /* GSAP sneaky peek on hover */
+  container.querySelectorAll('.folder-btn').forEach((btn) => {
+    const peek = btn.querySelector('.folder-peek');
+    if (!peek) return;
+
+    /* set initial state */
+    gsap.set(peek, { y: 18, rotation: -6, opacity: 0, scale: 0.85 });
+
+    btn.addEventListener('mouseenter', () => {
+      gsap.to(peek, {
+        y: -28,
+        rotation: gsap.utils.random(-8, 8),
+        opacity: 1,
+        scale: 1,
+        duration: 0.38,
+        ease: 'back.out(1.6)',
+      });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(peek, {
+        y: 18,
+        rotation: -6,
+        opacity: 0,
+        scale: 0.85,
+        duration: 0.25,
+        ease: 'power2.in',
+      });
+    });
+  });
 
   container.querySelectorAll('.folder-btn').forEach((btn) => {
     btn.addEventListener('click', () => {

@@ -398,6 +398,43 @@
     cursor: grabbing;
   }
 
+  /* ── Folder peek-on-hover ── */
+  .folder-wrap {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 72px;
+    height: 58px;
+  }
+
+  .folder-peek {
+    position: absolute;
+    bottom: 68%;          /* peeks from behind the top of folder */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 42px;
+    border-radius: 6px;
+    overflow: hidden;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    border: 2px solid rgba(255,255,255,0.8);
+    z-index: 0;           /* behind the folder SVG */
+  }
+
+  .folder-peek-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .folder-wrap > svg {
+    position: relative;
+    z-index: 1;           /* folder icon on top */
+  }
+
   /* ── Floating Music Player ── */
   #music-player {
     position: fixed;
