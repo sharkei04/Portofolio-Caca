@@ -197,17 +197,25 @@
   }
 
   .hero-letter[data-letter="P"] {
-    padding-left: 0.16em;
-    padding-right: 0.2em;
-    padding-top: 0.75em;
-    margin-top: -0.65em;
+    padding-left: 0.25em;
+    padding-right: 0.7em;
+    margin-right: -0.45em;
+    padding-top: 0.85em;
+    margin-top: -0.75em;
+    padding-bottom: 0.25em;
+    margin-bottom: -0.15em;
+    position: relative;
+    z-index: 10;
   }
 
   .hero-letter[data-letter="i"] {
-    padding-left: 0.08em;
-    padding-right: 0.2em;
-    padding-top: 0.75em;
-    margin-top: -0.65em;
+    padding-left: 0.1em;
+    padding-right: 0.35em;
+    margin-right: -0.15em;
+    padding-top: 0.85em;
+    margin-top: -0.75em;
+    position: relative;
+    z-index: 10;
   }
 
   .hero-letter-pixel {
