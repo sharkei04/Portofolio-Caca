@@ -794,28 +794,15 @@
         aria-label="Play background music"
         aria-pressed="false"
       >
-        <!-- Vinyl disc SVG -->
-        <svg
+        <!-- Supernatural CD Image -->
+        <img
           id="music-disc"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 64 64"
+          src="/assets/cd supernatural.png"
+          alt="Supernatural CD"
+          class="rounded-full object-cover pointer-events-none select-none"
           width="48"
           height="48"
-          aria-hidden="true"
-        >
-          <!-- outer ring -->
-          <circle cx="32" cy="32" r="30" fill="#F0508F" />
-          <!-- grooves -->
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#D63384" stroke-width="1.2" opacity="0.5"/>
-          <circle cx="32" cy="32" r="19" fill="none" stroke="#D63384" stroke-width="1" opacity="0.4"/>
-          <circle cx="32" cy="32" r="14" fill="none" stroke="#D63384" stroke-width="0.8" opacity="0.3"/>
-          <!-- label -->
-          <circle cx="32" cy="32" r="10" fill="#FBD0E4" />
-          <!-- center hole -->
-          <circle cx="32" cy="32" r="3" fill="#D63384" />
-          <!-- shine -->
-          <ellipse cx="24" cy="22" rx="5" ry="3" fill="white" opacity="0.15" transform="rotate(-30 24 22)"/>
-        </svg>
+        />
 
         <!-- Play icon -->
         <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true">
@@ -828,11 +815,15 @@
         </svg>
       </button>
 
-      <!-- Song info panel with volume controls -->
+      <!-- Music visualizer wave & volume controls -->
       <div id="music-info">
-        <div class="flex items-center gap-1 min-w-0">
-          <span class="music-note">🎵</span>
-          <span id="music-title">Song Playing</span>
+        <!-- Animated audio wave bars -->
+        <div class="music-wave" aria-label="Audio visualizer wave">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
         </div>
 
         <!-- Volume controls -->

@@ -508,7 +508,10 @@
     inset: 0;
     width: 48px;
     height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
     transform-origin: center center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   #icon-play,
@@ -516,7 +519,7 @@
     position: relative;
     z-index: 2;
     pointer-events: none;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
   }
 
   #music-info {
@@ -535,29 +538,35 @@
     opacity: 1;
   }
 
-  .music-note {
-    font-size: 0.85rem;
-    animation: music-bounce 1.2s ease-in-out infinite alternate;
+  /* ── Music Audio Wave Visualizer ── */
+  .music-wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+    padding: 0 4px;
   }
 
-  #music-player:not(.is-playing) .music-note {
-    animation-play-state: paused;
+  .wave-bar {
+    width: 3.5px;
+    background: linear-gradient(180deg, var(--color-pink-hot), var(--color-magenta));
+    border-radius: 999px;
+    transform-origin: bottom;
+    height: 100%;
+    transform: scaleY(0.25);
+    transition: transform 0.2s ease;
   }
 
-  @keyframes music-bounce {
-    from { transform: translateY(0);    }
-    to   { transform: translateY(-3px); }
-  }
+  #music-player.is-playing .bar-1 { animation: soundWave 0.8s ease-in-out infinite alternate; }
+  #music-player.is-playing .bar-2 { animation: soundWave 0.65s ease-in-out infinite alternate 0.15s; }
+  #music-player.is-playing .bar-3 { animation: soundWave 1.05s ease-in-out infinite alternate 0.3s; }
+  #music-player.is-playing .bar-4 { animation: soundWave 0.6s ease-in-out infinite alternate 0.2s; }
+  #music-player.is-playing .bar-5 { animation: soundWave 0.85s ease-in-out infinite alternate 0.4s; }
 
-  #music-title {
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--color-magenta);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 105px;
+  @keyframes soundWave {
+    0%   { transform: scaleY(0.2); }
+    50%  { transform: scaleY(0.95); }
+    100% { transform: scaleY(0.35); }
   }
 
   .music-volume-wrap {

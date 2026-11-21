@@ -201,7 +201,7 @@ export const content = {
         tech:        ['Web App', 'Database', 'Evaluation System', 'PHP/MySQL'],
         demo:        'https://pk2.himsiunsri.org/',
         repo:        '',
-        image:       '/assets/project-pkkmb.svg',
+        image:       '/assets/website penilaian pkkmb.jpeg',
       },
     ],
     rental: [

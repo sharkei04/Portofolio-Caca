@@ -4,7 +4,6 @@ export function initMusicPlayer() {
   const player        = document.getElementById('music-player');
   const audio         = document.getElementById('bg-music');
   const toggle        = document.getElementById('music-toggle');
-  const title         = document.getElementById('music-title');
   const disc          = document.getElementById('music-disc');
   const iconPlay      = document.getElementById('icon-play');
   const iconPause     = document.getElementById('icon-pause');
@@ -109,9 +108,4 @@ export function initMusicPlayer() {
   audio.addEventListener('play',  () => setPlaying(true));
   audio.addEventListener('pause', () => setPlaying(false));
   audio.addEventListener('ended', () => setPlaying(false));
-
-  /* Update song title from metadata if available */
-  audio.addEventListener('loadedmetadata', () => {
-    if (title && audio.title) title.textContent = audio.title;
-  });
 }
