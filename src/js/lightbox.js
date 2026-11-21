@@ -11,7 +11,7 @@ function getPrev()    { return document.getElementById('lightbox-prev'); }
 function getNext()    { return document.getElementById('lightbox-next'); }
 function getLB()      { return document.getElementById('lightbox'); }
 
-function render(animate = false, direction = 1) {
+function render(animate = false) {
   const item = _items[_index];
   if (!item) return;
 
@@ -36,7 +36,7 @@ function render(animate = false, direction = 1) {
   };
 
   if (animate) {
-    animateLightboxChange(getImg(), updateDom, direction);
+    animateLightboxChange(getImg(), updateDom);
   } else {
     updateDom();
   }
@@ -45,14 +45,14 @@ function render(animate = false, direction = 1) {
 function prev() {
   if (_index > 0) {
     _index--;
-    render(true, -1);
+    render(true);
   }
 }
 
 function next() {
   if (_index < _items.length - 1) {
     _index++;
-    render(true, 1);
+    render(true);
   }
 }
 

@@ -39,7 +39,10 @@ function bootstrap() {
   initFolders();
   initLightbox();
   initNavSpy();
-  /* Back to top is now a fixed floating button — see animations/backToTop.js */
+  document.querySelector('footer a[href="#home"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   initAnimations();
   initMusicPlayer();
 }
