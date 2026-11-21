@@ -97,6 +97,7 @@ export function initMusicPlayer() {
   }
 
   toggle.addEventListener('click', () => {
+    toggle.blur();
     if (audio.paused) {
       audio.play().then(() => setPlaying(true)).catch(() => {});
     } else {

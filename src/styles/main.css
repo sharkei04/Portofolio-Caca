@@ -476,8 +476,7 @@
     will-change: transform, opacity;
   }
 
-  #music-player:hover,
-  #music-player.is-playing {
+  #music-player:hover {
     max-width: 360px;
     box-shadow: 0 6px 28px rgba(240, 80, 143, 0.4);
     background: rgba(255, 255, 255, 0.92);
@@ -533,8 +532,7 @@
     transition: opacity 0.3s ease 0.1s;
   }
 
-  #music-player:hover #music-info,
-  #music-player.is-playing #music-info {
+  #music-player:hover #music-info {
     opacity: 1;
   }
 
@@ -645,8 +643,7 @@
       overflow: visible;
     }
 
-    #music-player:hover,
-    #music-player.is-playing {
+    #music-player:hover {
       max-width: 52px;
       background: transparent;
       box-shadow: none;
@@ -702,8 +699,7 @@
       transform: rotate(45deg);
     }
 
-    #music-player.is-playing #music-info,
-    #music-player:focus-within #music-info {
+    #music-player:hover #music-info {
       opacity: 1;
       transform: translateY(0) scale(1);
       pointer-events: auto;
