@@ -1,9 +1,6 @@
 import { gsap } from 'gsap';
 
 export function initFloatingStars() {
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) return () => {};
-
   const isMobile = window.innerWidth < 768;
   const maxStars = isMobile ? 6 : 14;
   const allStars = Array.from(document.querySelectorAll('.float-star'));

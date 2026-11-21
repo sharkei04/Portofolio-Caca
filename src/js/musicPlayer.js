@@ -58,11 +58,9 @@ export function initMusicPlayer() {
     });
   }
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   /* Spinning disc tween — always spinning, speed up when playing */
   let discTween = null;
-  if (!prefersReduced && disc) {
+  if (disc) {
     discTween = gsap.to(disc, {
       rotation: 360,
       duration: 6,

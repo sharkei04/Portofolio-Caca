@@ -2,12 +2,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function initScrollReveal() {
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    gsap.set('.reveal', { opacity: 1, y: 0 });
-    return () => {};
-  }
-
   const triggers = [];
 
   // 1. Experience timeline items + popping star markers
